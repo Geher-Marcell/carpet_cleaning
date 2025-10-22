@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Navbar from "./Navbar/page";
 
 export default function Home() {
 	// const [message, setMessage] = useState("");
@@ -11,9 +12,7 @@ export default function Home() {
 
 	return (
 		<>
-			<div>
-				<h1>Welcome to the carpet site :D</h1>
-			</div>
+			<Navbar />
 		</>
 	);
 }
