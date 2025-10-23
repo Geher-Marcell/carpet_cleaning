@@ -12,27 +12,30 @@ type widgetProps = {
 const OrderWidget: React.FC<widgetProps> = ({ cim, ar, leiras, mi }) => {
   return (
     <>
-      <div className="text-white bg-[#161b22] w-75 h-fit rounded-xl p-5 space-y-2 outline-1 outline-[#364050]">
-        <p className="text-2xl">{cim}</p>
+      <div className="text-white bg-[#161b22] w-75 h-fit rounded-xl p-5 outline-1 outline-[#364050]">
+        <p className="text-2xl font-medium">{cim}</p>
 
-        <p className="text-4xl">
+        <p className="text-4xl font-extrabold">
           {ar} Ft<span className="text-sm">/{mi}</span>
         </p>
 
-				<PrimaryButton label="Megrendelés" />
+        <PrimaryButton label="Megrendelés" buttonClass="my-5" />
 
-				{leiras.map((item, index) => (
-					<div key={index} className="flex items-center text-md">
-						<FontAwesomeIcon
-							icon={faCheck}
-							className="text-[#3471d4] size-5 mr-2.5"
-						/>
-						<p key={index}>{item}</p>
-					</div>
-				))}
-			</div>
-		</>
-	);
+        {leiras.map((item, index) => (
+          <div
+            key={index}
+            className="flex items-center text-md font-medium my-1"
+          >
+            <FontAwesomeIcon
+              icon={faCheck}
+              className="text-[#3471d4] size-5 mr-2.5"
+            />
+            <p key={index}>{item}</p>
+          </div>
+        ))}
+      </div>
+    </>
+  );
 };
 
 export default OrderWidget;

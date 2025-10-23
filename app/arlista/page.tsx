@@ -3,11 +3,11 @@ import OrderWidget from "./orderwidget/page";
 export default function Home() {
   return (
     <div className="w-dvw h-dvh pt-25">
-      <h1 className="text-5xl font-bold text-center text-white">
+      <h1 className="text-4xl font-medium text-center text-white">
         Szőnyegtisztítás
       </h1>
 
-      <div className="flex flex-col gap-5 justify-center items-center pt-10">
+      <div className="flex flex-col gap-5 justify-center items-center pt-7">
         <OrderWidget
           cim="Standard szoba"
           ar={"15 000"}
