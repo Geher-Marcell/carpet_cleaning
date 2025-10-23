@@ -45,12 +45,12 @@ const PrimaryButton: React.FC<
 	return (
 		<motion.button
 			whileHover={{
-				scale: 1.05,
+				scale: 1.02,
 				boxShadow: "0 4px 14px 0 rgba(0, 0, 0, 0.25)",
 			}}
-			whileTap={{ scale: 0.95 }}
+			whileTap={{ scale: 0.98 }}
 			transition={{ type: "spring", stiffness: 200, damping: 20 }}
-			className={`${buttonClass} w-full space-x-1 rounded-md bg-emerald-700 px-4 py-2 text-white`}
+			className={`${buttonClass} w-full space-x-1 rounded-md bg-emerald-700 px-4 py-2 text-white cursor-pointer`}
 			onClick={(e) => {
 				if (disableAfterClick) {
 					(e.target as HTMLButtonElement).disabled = true;
