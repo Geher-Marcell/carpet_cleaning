@@ -7,7 +7,7 @@ export default function Home() {
         Szőnyegtisztítás
       </h1>
 
-      <div className="flex flex-col gap-5 justify-center items-center pt-7">
+      <div className="flex flex-col gap-5 justify-center items-center pt-10">
         <OrderWidget
           cim="Standard szoba"
           ar={"15 000"}
