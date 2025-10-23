@@ -38,7 +38,7 @@ const Navbar: React.FC<NavbarProps> = ({ links, currentPath }) => {
   return (
     <>
       <div
-        className={`fixed top-0 left-0 w-screen h-fit p-4 bg-neutral-800 z-50`}
+        className={`fixed top-0 left-0 w-screen h-fit p-4 bg-[#07090c] z-50`}
       >
         {/* Top bar with title and hamburger */}
         <div className="flex justify-between items-center h-7.5">
