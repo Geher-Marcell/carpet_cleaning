@@ -1,6 +1,3 @@
-import Image from "next/image";
-import Navbar from "./Navbar/navbar";
-
 export default function Home() {
 	// const [message, setMessage] = useState("");
 
@@ -12,7 +9,9 @@ export default function Home() {
 
 	return (
 		<>
-			<p>hello szia</p>
+			<main className="h-dvh w-dvw pt-20">
+				<p>hello szia</p>
+			</main>
 		</>
 	);
 }
