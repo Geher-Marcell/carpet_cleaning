@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import PrimaryButton from "./component/buttons/PrimaryButton";
 
 export default function Home() {

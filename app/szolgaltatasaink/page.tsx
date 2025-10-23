@@ -12,21 +12,21 @@ export default function Home() {
 
       <div className="flex flex-wrap justify-center items-center gap-5">
         <InfoWidget
-          cim="Mélyszőnyeg Tisztítás"
-          leiras={"Alapos, mély tisztítás a szőnyegeinek."}
-          ikon={faBroom}
+          title="Mélyszőnyeg Tisztítás"
+          description={"Alapos, mély tisztítás a szőnyegeinek."}
+          icon={faBroom}
         />
 
         <InfoWidget
-          cim="Folteltávolítás"
-          leiras={"Makacs foltok hatékony eltávolítása."}
-          ikon={faCircle}
+          title="Folteltávolítás"
+          description={"Makacs foltok hatékony eltávolítása."}
+          icon={faCircle}
         />
 
         <InfoWidget
-          cim="Kisállat Szag Eltávolítás"
-          leiras={"Távolítsa el a kisállat szagokat a szőnyegekből."}
-          ikon={faPaw}
+          title="Kisállat Szag Eltávolítás"
+          description={"Távolítsa el a kisállat szagokat a szőnyegekből."}
+          icon={faPaw}
         />
       </div>
 
@@ -34,21 +34,21 @@ export default function Home() {
 
       <div className="flex flex-wrap justify-center items-center gap-5 pb-5">
         <InfoWidget
-          cim="Belső Részletezés"
-          leiras={"Autója belső terének teljes tisztítása."}
-          ikon={faCar}
+          title="Belső Részletezés"
+          description={"Autója belső terének teljes tisztítása."}
+          icon={faCar}
         />
 
         <InfoWidget
-          cim="Külső Mosás & Viaszolás"
-          leiras={"Védő mosás és viasz a fényes felületért."}
-          ikon={faHandsWash}
+          title="Külső Mosás & Viaszolás"
+          description={"Védő mosás és viasz a fényes felületért."}
+          icon={faHandsWash}
         />
 
         <InfoWidget
-          cim="Teljes Körű Autómosás"
-          leiras={"Átfogó belső és külső tisztítás."}
-          ikon={faCar}
+          title="Teljes Körű Autómosás"
+          description={"Átfogó belső és külső tisztítás."}
+          icon={faCar}
         />
       </div>
 

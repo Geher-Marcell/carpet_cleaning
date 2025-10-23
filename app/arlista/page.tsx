@@ -9,17 +9,17 @@ export default function Home() {
 
       <div className="flex flex-col gap-5 justify-center items-center pt-10">
         <OrderWidget
-          cim="Standard szoba"
-          ar={"15 000"}
-          leiras={["Mélytisztítás", "Folteltávolítás", "Szagtalanítás"]}
-          mi="szoba"
+          title="Standard szoba"
+          price={"15 000"}
+          description={["Mélytisztítás", "Folteltávolítás", "Szagtalanítás"]}
+          unit="szoba"
         />
 
         <OrderWidget
-          cim="Lépcsőház"
-          ar={"9000"}
-          leiras={["Mélytisztítás", "Kézi részletezés"]}
-          mi="lépcsősor"
+          title="Lépcsőház"
+          price={"9000"}
+          description={["Mélytisztítás", "Kézi részletezés"]}
+          unit="lépcsősor"
         />
       </div>
     </div>
