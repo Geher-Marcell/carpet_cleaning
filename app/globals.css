@@ -8,6 +8,7 @@ body {
 	height: 100dvh;
 	background-color: #0d1117;
 	color: white;
+	font-weight: 400;
 }
 
 * {
@@ -17,8 +18,6 @@ body {
 	user-select: none;
 	font-family: "Quicksand", sans-serif;
 	font-optical-sizing: auto;
-	font-weight: 600;
-	font-style: normal;
 }
 
 .h-screen {

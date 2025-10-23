@@ -1,6 +1,6 @@
+import PrimaryButton from "@/app/component/buttons/PrimaryButton";
 import { faCheck } from "@fortawesome/free-solid-svg-icons/faCheck";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Button from "../button/page";
 
 type widgetProps = {
   cim: string;
@@ -19,20 +19,20 @@ const OrderWidget: React.FC<widgetProps> = ({ cim, ar, leiras, mi }) => {
           {ar} Ft<span className="text-sm">/{mi}</span>
         </p>
 
-        <Button szoveg="Megrendelés" szin="#3b82f6" hoverszin="#1e74ff" />
+				<PrimaryButton label="Megrendelés" />
 
-        {leiras.map((item, index) => (
-          <div key={index} className="flex items-center text-md">
-            <FontAwesomeIcon
-              icon={faCheck}
-              className="text-[#3471d4] size-5 mr-2.5"
-            />
-            <p key={index}>{item}</p>
-          </div>
-        ))}
-      </div>
-    </>
-  );
+				{leiras.map((item, index) => (
+					<div key={index} className="flex items-center text-md">
+						<FontAwesomeIcon
+							icon={faCheck}
+							className="text-[#3471d4] size-5 mr-2.5"
+						/>
+						<p key={index}>{item}</p>
+					</div>
+				))}
+			</div>
+		</>
+	);
 };
 
 export default OrderWidget;
