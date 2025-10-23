@@ -8,7 +8,7 @@ type widgetProps = {
   leiras: string[];
 };
 
-const Widget: React.FC<widgetProps> = ({ cim, ar, leiras }) => {
+const OrderWidget: React.FC<widgetProps> = ({ cim, ar, leiras }) => {
   return (
     <>
       <div className="text-white bg-[#161b22] w-75 h-fit rounded-xl p-5 space-y-2 outline-1 outline-[#364050]">
@@ -18,7 +18,7 @@ const Widget: React.FC<widgetProps> = ({ cim, ar, leiras }) => {
           {ar} Ft<span className="text-sm">/m2</span>
         </p>
 
-        <Button szoveg="Megrendelés" />
+        <Button szoveg="Megrendelés" szin="#3b82f6" hoverszin="#1e74ff" />
 
         {leiras.map((item, index) => (
           <div key={index} className="flex items-center text-md">
@@ -34,4 +34,4 @@ const Widget: React.FC<widgetProps> = ({ cim, ar, leiras }) => {
   );
 };
 
-export default Widget;
+export default OrderWidget;
