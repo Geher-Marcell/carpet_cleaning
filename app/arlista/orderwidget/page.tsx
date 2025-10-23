@@ -6,16 +6,17 @@ type widgetProps = {
   cim: string;
   ar: string;
   leiras: string[];
+  mi: string;
 };
 
-const OrderWidget: React.FC<widgetProps> = ({ cim, ar, leiras }) => {
+const OrderWidget: React.FC<widgetProps> = ({ cim, ar, leiras, mi }) => {
   return (
     <>
       <div className="text-white bg-[#161b22] w-75 h-fit rounded-xl p-5 space-y-2 outline-1 outline-[#364050]">
         <p className="text-2xl">{cim}</p>
 
         <p className="text-4xl">
-          {ar} Ft<span className="text-sm">/m2</span>
+          {ar} Ft<span className="text-sm">/{mi}</span>
         </p>
 
         <Button szoveg="Megrendelés" szin="#3b82f6" hoverszin="#1e74ff" />

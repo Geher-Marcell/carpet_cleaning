@@ -7,8 +7,8 @@ import { faHandsWash } from "@fortawesome/free-solid-svg-icons/faHandsWash";
 
 export default function Home() {
   return (
-    <div className="flex flex-col justify-center items-center">
-      <h1 className="text-3xl mt-5 mb-5">Szőnyegtisztítás</h1>
+    <div className="flex flex-col justify-center items-center pt-22">
+      <h1 className="text-3xl pb-5">Szőnyegtisztítás</h1>
 
       <div className="flex flex-wrap justify-center items-center gap-5">
         <InfoWidget
@@ -30,9 +30,9 @@ export default function Home() {
         />
       </div>
 
-      <h1 className="text-3xl mt-5 mb-5">Autótisztítás</h1>
+      <h1 className="text-3xl pt-5 pb-5">Autótisztítás</h1>
 
-      <div className="flex flex-wrap justify-center items-center gap-5 mb-5">
+      <div className="flex flex-wrap justify-center items-center gap-5 pb-5">
         <InfoWidget
           cim="Belső Részletezés"
           leiras={"Autója belső terének teljes tisztítása."}
