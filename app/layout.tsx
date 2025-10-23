@@ -1,13 +1,17 @@
 import "./globals.css";
+import NavbarWrapper from "./Navbar/navbarWrapper";
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  );
+	return (
+		<html lang="en">
+			<body>
+				{children}
+				<NavbarWrapper />
+			</body>
+		</html>
+	);
 }

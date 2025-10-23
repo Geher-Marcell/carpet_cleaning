@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Navbar from "./Navbar/page";
+import Navbar from "./Navbar/navbar";
 
 export default function Home() {
 	// const [message, setMessage] = useState("");
@@ -12,7 +12,7 @@ export default function Home() {
 
 	return (
 		<>
-			<Navbar />
+			<p>hello szia</p>
 		</>
 	);
 }
