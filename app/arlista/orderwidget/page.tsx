@@ -18,7 +18,7 @@ const OrderWidget: React.FC<widgetProps> = ({
   return (
     <>
       <div className="text-white bg-[#161b22] w-75 h-fit rounded-xl p-5 outline-1 outline-[#364050]">
-        <p className="text-2xl font-medium">{title}</p>
+        <p className="text-2xl font-medium mb-2">{title}</p>
 
         <p className="text-4xl font-extrabold">
           {price} Ft<span className="text-sm">/{unit}</span>

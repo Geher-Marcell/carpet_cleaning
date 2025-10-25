@@ -7,8 +7,8 @@ import PrimaryButton from "../component/buttons/PrimaryButton";
 
 export default function Home() {
   return (
-    <div className="flex flex-col justify-center items-center pt-25">
-      <h1 className="text-4xl pb-10 font-medium">Szőnyegtisztítás</h1>
+    <div className="flex flex-col justify-center items-center mt-25">
+      <h1 className="text-4xl mb-10 font-medium">Szőnyegtisztítás</h1>
 
       <div className="flex flex-wrap justify-center items-center gap-5">
         <InfoWidget
@@ -30,9 +30,9 @@ export default function Home() {
         />
       </div>
 
-      <h1 className="text-4xl pt-10 pb-10 font-medium">Autótisztítás</h1>
+      <h1 className="text-4xl mt-10 mb-10 font-medium">Autótisztítás</h1>
 
-      <div className="flex flex-wrap justify-center items-center gap-5 pb-5">
+      <div className="flex flex-wrap justify-center items-center gap-5 mb-5">
         <InfoWidget
           title="Belső Részletezés"
           description={"Autója belső terének teljes tisztítása."}
