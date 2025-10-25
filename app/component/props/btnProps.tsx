@@ -1,7 +1,7 @@
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
 export type ButtonProps = {
-  label?: string;
+  label: string;
   icon?: IconDefinition;
 
   labelClass?: string;

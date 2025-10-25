@@ -7,6 +7,7 @@ type widgetProps = {
   price: string;
   description: string[];
   unit: string;
+  popular?: boolean;
 };
 
 const OrderWidget: React.FC<widgetProps> = ({
@@ -14,11 +15,20 @@ const OrderWidget: React.FC<widgetProps> = ({
   price,
   description,
   unit,
+  popular,
 }) => {
   return (
     <>
-      <div className="text-white bg-[#161b22] w-75 h-fit rounded-xl p-5 outline-1 outline-[#364050]">
-        <p className="text-2xl font-medium mb-2">{title}</p>
+      <div
+        className={`text-white  w-75 h-70 relative rounded-xl p-5 ${popular ? "bg-[#111c2d] outline-2 outline-[#3b82f6]" : "bg-[#161b22] outline-1 outline-[#364050]"}`}
+      >
+        {popular && (
+          <p className="text-white text-xs font-bold bg-[#3b82f6] absolute -top-3 right-3 rounded-2xl w-fit p-1 pr-2 pl-2">
+            NÉPSZERŰ
+          </p>
+        )}
+
+        <p className="text-xl font-medium mb-2">{title}</p>
 
         <p className="text-4xl font-extrabold">
           {price} Ft<span className="text-sm">/{unit}</span>

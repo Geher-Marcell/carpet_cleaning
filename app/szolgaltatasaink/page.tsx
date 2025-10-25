@@ -7,7 +7,7 @@ import PrimaryButton from "../component/buttons/PrimaryButton";
 
 export default function Home() {
   return (
-    <div className="flex flex-col justify-center items-center mt-25">
+    <div className="flex flex-col justify-center items-center pt-25">
       <h1 className="text-4xl mb-10 font-medium">Szőnyegtisztítás</h1>
 
       <div className="flex flex-wrap justify-center items-center gap-5">
