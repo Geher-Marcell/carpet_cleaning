@@ -1,6 +1,14 @@
+"use client";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import OrderWidget from "./orderwidget/page";
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons/faCaretDown";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 
 export default function Home() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className="w-dvw h-dvh pt-25">
       <h1 className="text-4xl font-medium text-center text-white mb-10">
@@ -9,7 +17,7 @@ export default function Home() {
 
       <div className="flex flex-wrap gap-5 justify-center items-center">
         <OrderWidget
-          title="Standard szoba"
+          title="Standard Szoba"
           price={"15 000"}
           unit="szoba"
           description={["Mélytisztítás", "Folteltávolítás", "Szagtalanítás"]}
@@ -71,6 +79,12 @@ export default function Home() {
           description={["Motortér tisztítás", "Fényszóró felújítás"]}
         />
       </div>
+
+      <h1 className="text-4xl font-medium text-center text-white mt-10 mb-10">
+        Gyakran Ismételt Kérdések
+      </h1>
+
+      <p className="mt-500">fack you</p>
     </div>
   );
 }
