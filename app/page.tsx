@@ -51,7 +51,7 @@ export default function Home() {
         </h1>
         <div className="relative flex flex-row gap-5 justify-center">
           <div
-            className="w-40 h-40 rounded-md"
+            className="w-40 h-40 rounded-md outline-1 outline-[#364050]"
             style={{
               backgroundImage:
                 "url(https://img.freepik.com/free-photo/grey-carpet-background_1339-7412.jpg?semt=ais_hybrid&w=740&q=80",
@@ -65,7 +65,7 @@ export default function Home() {
             </p>
           </div>
           <div
-            className="w-40 h-40 rounded-md bg-cover"
+            className="w-40 h-40 rounded-md bg-cover outline-1 outline-[#364050]"
             style={{
               backgroundImage:
                 "url(https://www.carcility.com/blog/wp-content/uploads/2022/12/Car-Detailing-Services-in-dubai-Carcility.jpg",
