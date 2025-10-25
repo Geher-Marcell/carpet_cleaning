@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
 @import "tailwindcss";
 
 body {
@@ -7,6 +6,8 @@ body {
     padding: 0;
     height: 100dvh;
     background-color: #0d1117;
+    color: white;
+    font-weight: 400;
 }
 
 * {
@@ -14,10 +15,8 @@ body {
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    font-family: "Quicksand", sans-serif;
+    font-family: "Rubik", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 600;
-    font-style: normal;
 }
 
 .h-screen {
