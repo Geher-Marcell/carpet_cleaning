@@ -52,7 +52,7 @@ export default function Home() {
         />
       </div>
 
-      <div className="w-70">
+      <div className="w-70 mt-5">
         <PrimaryButton
           label="Kérjen ingyenes árajánlatot"
           colorClass="bg-[#3b82f6]"
