@@ -10,8 +10,8 @@ const NavbarWrapper: React.FC = () => {
 
 	const links = [
 		{ href: "#home", label: "Főoldal", icon: faHouse },
-		{ href: "#szolgaltatasok", label: "Szolgáltatások", icon: faWater },
-		{ href: "#arlista", label: "Árlista", icon: faMoneyBill },
+		{ href: "#services", label: "Szolgáltatások", icon: faWater },
+		{ href: "#priceList", label: "Árlista", icon: faMoneyBill },
 	];
 
 	return <Navbar currentPath={pathname} links={links} />;

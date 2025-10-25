@@ -1,15 +1,18 @@
 import InfoWidget from "../component/widgets/infoWidget";
-import { faBroom } from "@fortawesome/free-solid-svg-icons/faBroom";
-import { faCircle } from "@fortawesome/free-solid-svg-icons/faCircle";
-import { faCar, faPaw } from "@fortawesome/free-solid-svg-icons";
-import { faHandsWash } from "@fortawesome/free-solid-svg-icons/faHandsWash";
+import {
+	faCar,
+	faPaw,
+	faCircle,
+	faHandsWash,
+	faBroom,
+} from "@fortawesome/free-solid-svg-icons";
 import PrimaryButton from "../component/buttons/PrimaryButton";
 
 export default function Services() {
 	return (
 		<>
 			<div
-				id="szolgaltatasok"
+				id="services"
 				className="p-10 flex flex-col gap-10 items-center
 			 		*:flex *:flex-col *:justify-center *:items-center *:gap-4"
 			>

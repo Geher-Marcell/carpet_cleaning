@@ -86,12 +86,12 @@ const Navbar: React.FC<NavbarProps> = ({ links, currentPath }) => {
 									transition={{ ease: "easeInOut", duration: 0.2 }}
 									className={`px-4 py-2 text-lg rounded`}
 								>
-									<a href={link.href}>
+									<Link href={link.href}>
 										<span className="mr-2">
 											<FontAwesomeIcon icon={link.icon} />
 										</span>
 										{link.label}
-									</a>
+									</Link>
 								</motion.div>
 							))}
 						</div>
