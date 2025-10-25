@@ -39,6 +39,7 @@ const PrimaryButton: React.FC<
   labelClass,
   iconClass,
   buttonClass,
+  colorClass = "bg-emerald-700",
   callback,
   disableAfterClick = false,
 }) => {
@@ -50,7 +51,7 @@ const PrimaryButton: React.FC<
       }}
       whileTap={{ scale: 0.98 }}
       transition={{ type: "spring", stiffness: 200, damping: 20 }}
-      className={`${buttonClass} w-full space-x-1 rounded-md bg-emerald-700 px-4 py-2 text-white cursor-pointer`}
+      className={`${buttonClass} ${colorClass} w-full space-x-1 rounded-md px-4 py-2 text-white cursor-pointer`}
       onClick={(e) => {
         if (disableAfterClick) {
           (e.target as HTMLButtonElement).disabled = true;

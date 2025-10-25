@@ -36,7 +36,7 @@ export default function Home() {
               Tapasztalja meg a legjobb szőnyeg- és autó- takarítási
               szolgáltatásokat.
             </h5>
-            <PrimaryButton label="Foglaljon most" />
+            <PrimaryButton label="Foglaljon most" colorClass="bg-[#3b82f6]" />
           </div>
         </div>
       </main>

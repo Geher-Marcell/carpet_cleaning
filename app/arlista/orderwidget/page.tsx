@@ -24,7 +24,11 @@ const OrderWidget: React.FC<widgetProps> = ({
           {price} Ft<span className="text-sm">/{unit}</span>
         </p>
 
-        <PrimaryButton label="Megrendelés" buttonClass="my-5" />
+        <PrimaryButton
+          label="Megrendelés"
+          buttonClass="my-5"
+          colorClass="bg-[#3b82f6]"
+        />
 
         {description.map((item, index) => (
           <div

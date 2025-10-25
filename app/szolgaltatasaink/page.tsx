@@ -53,7 +53,10 @@ export default function Home() {
       </div>
 
       <div className="w-70">
-        <PrimaryButton label="Kérjen ingyenes árajánlatot" />
+        <PrimaryButton
+          label="Kérjen ingyenes árajánlatot"
+          colorClass="bg-[#3b82f6]"
+        />
       </div>
     </div>
   );
