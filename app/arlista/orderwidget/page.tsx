@@ -40,7 +40,7 @@ const OrderWidget: React.FC<widgetProps> = ({
           colorClass="bg-[#3b82f6]"
         />
 
-        {description.map((item, index) => (
+        {description?.map((item, index) => (
           <div
             key={index}
             className="flex items-center text-md font-medium my-1"
