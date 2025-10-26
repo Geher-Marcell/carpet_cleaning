@@ -10,6 +10,11 @@ body {
 	font-weight: 400;
 }
 
+:root {
+	scroll-behavior: smooth !important;
+	--scroll-behavior: smooth !important;
+}
+
 * {
 	box-sizing: border-box;
 	-webkit-user-select: none;

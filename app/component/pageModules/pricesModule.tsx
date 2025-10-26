@@ -1,5 +1,5 @@
 import { p } from "motion/react-client";
-import OrderWidget from "../component/widgets/orderWidget";
+import OrderWidget from "../widgets/orderWidget";
 
 export default function PriceList() {
 	const carpetPrices = [
@@ -62,11 +62,10 @@ export default function PriceList() {
 		<>
 			<div
 				id="priceList"
-				className="p-10 flex flex-col gap-10 items-center
+				className="p-10 flex flex-col gap-10 items-center h-dvh justify-center
 			 		*:flex *:flex-col *:justify-center *:items-center *:gap-4"
 			>
 				<h1 className="text-4xl text-center font-bold">Áraink</h1>
-
 				<div>
 					<h3 className="text-2xl text-neutral-200 font-semibold">
 						Szőnyegtisztítás

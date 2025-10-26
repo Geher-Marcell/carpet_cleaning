@@ -1,4 +1,4 @@
-import InfoWidget from "../component/widgets/infoWidget";
+import InfoWidget from "../widgets/infoWidget";
 import {
 	faCar,
 	faPaw,
@@ -6,14 +6,14 @@ import {
 	faHandsWash,
 	faBroom,
 } from "@fortawesome/free-solid-svg-icons";
-import PrimaryButton from "../component/buttons/PrimaryButton";
+import PrimaryButton from "../buttons/PrimaryButton";
 
 export default function Services() {
 	return (
 		<>
 			<div
 				id="services"
-				className="p-10 flex flex-col gap-10 items-center
+				className="flex flex-col gap-10 items-center h-dvh justify-center
 			 		*:flex *:flex-col *:justify-center *:items-center *:gap-4"
 			>
 				<h1 className="text-4xl text-center font-bold">Szolgáltatásaink</h1>

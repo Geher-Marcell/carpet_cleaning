@@ -1,9 +1,9 @@
 "use client";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import PriceList from "./arlista/page";
+import PriceList from "./component/pageModules/pricesModule";
 import PrimaryButton from "./component/buttons/PrimaryButton";
-import Services from "./szolgaltatasok/page";
+import Services from "./component/pageModules/servicesModule";
 import {
 	faClock,
 	faLeaf,
@@ -25,12 +25,15 @@ export default function Home() {
 
 	return (
 		<>
-			<main className="h-dvh w-dvw pt-15 overflow-x-hidden">
+			<main className="h-dvh w-dvw overflow-x-hidden *:border-t *:border-t-gray-800">
 				<div
 					id="home"
-					className="relative flex flex-col text-center justify-center items-center w-full h-full gap-6 bg-cover bg-center bg-no-repeat p-4"
+					className="relative flex flex-col text-center justify-center items-center w-full h-full gap-6 p-4"
 					style={{
 						backgroundImage: "url(./images/main.png)",
+						backgroundRepeat: "no-repeat",
+						backgroundSize: "cover",
+						backgroundPosition: "center",
 					}}
 				>
 					{/* Dark overlay */}
@@ -50,9 +53,9 @@ export default function Home() {
 						</div>
 					</div>
 				</div>
-				<hr className="text-gray-800" />
+				{/* <hr className="text-gray-800" /> */}
 				<Services />
-				<hr className="text-gray-800" />
+				{/* <hr className="text-gray-800" /> */}
 				<div className="p-10 space-y-10">
 					<h1 className="text-3xl font-semibold flex justify-center">
 						Miért válasszon minket?
@@ -95,7 +98,7 @@ export default function Home() {
 						</div>
 					</div>
 				</div>
-				<hr className="text-gray-800" />
+				{/* <hr className="text-gray-800" /> */}
 				<PriceList />
 				{/* Szolgáltatások
 				<hr className="text-gray-800"></hr>

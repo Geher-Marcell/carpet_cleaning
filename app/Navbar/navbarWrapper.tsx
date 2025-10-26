@@ -9,9 +9,9 @@ const NavbarWrapper: React.FC = () => {
 	const pathname = usePathname();
 
 	const links = [
-		{ href: "#home", label: "Főoldal", icon: faHouse },
-		{ href: "#services", label: "Szolgáltatások", icon: faWater },
-		{ href: "#priceList", label: "Árlista", icon: faMoneyBill },
+		{ href: "/#home", label: "Főoldal", icon: faHouse },
+		{ href: "/#services", label: "Szolgáltatások", icon: faWater },
+		{ href: "/#priceList", label: "Árlista", icon: faMoneyBill },
 	];
 
 	return <Navbar currentPath={pathname} links={links} />;
