@@ -1,4 +1,3 @@
-import { p } from "motion/react-client";
 import OrderWidget from "../widgets/orderWidget";
 
 export default function PriceList() {
@@ -8,7 +7,6 @@ export default function PriceList() {
       price: "15 000",
       unit: "szoba",
       description: ["Mélytisztítás", "Folteltávolítás", "Szagtalanítás"],
-      popular: true,
     },
     {
       title: "Lépcsőház",
@@ -79,7 +77,6 @@ export default function PriceList() {
                 price={service.price}
                 unit={service.unit}
                 description={service.description}
-                popular={service.popular}
               />
             ))}
           </div>
