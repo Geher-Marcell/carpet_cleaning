@@ -22,10 +22,18 @@ const OrderWidget: React.FC<widgetProps> = ({
       <div
         className={`text-white  w-75 h-70 relative rounded-xl p-5 ${
           popular
-            ? "bg-[#381b08] outline-2 outline-[#db5d0b]"
+            ? "bg-[#381b08] bg-[linear-gradient(65deg,transparent_20%,rgba(253,199,0,0.1)_40%,transparent_60%)]"
             : "bg-[#161b22] outline-1 outline-[#364050]"
         }`}
       >
+        {popular /*fdc700   */ && (
+          <div
+            className="absolute -inset-0.5 rounded-xl
+            bg-[linear-gradient(65deg,transparent_20%,#fdc700_40%,transparent_60%)]
+            -z-10 bg-[#db5d0b]"
+          ></div>
+        )}
+
         {popular && (
           <p className="text-white text-xs font-bold bg-[#db5d0b] absolute -top-3 right-4 rounded-2xl w-fit p-1 pr-2 pl-2">
             NÉPSZERŰ
