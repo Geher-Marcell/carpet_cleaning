@@ -1,58 +1,53 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
 @import "tailwindcss";
 
+html {
+    scroll-behavior: smooth !important;
+}
+
 body {
-	margin: 0;
-	padding: 0;
-	height: 100dvh;
-	background-color: #0d1117;
-	color: white;
-	font-weight: 400;
+    font-family: "Rubik", sans-serif;
+    background-color: #0d1117;
+    color: white;
 }
 
-:root {
-	scroll-behavior: smooth !important;
-	--scroll-behavior: smooth !important;
+#services {
+    scroll-margin-top: 30px; /* Adjust to match your navbar height */
 }
 
-* {
-	box-sizing: border-box;
-	-webkit-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	font-family: "Rubik", sans-serif;
-	font-optical-sizing: auto;
+#priceList {
+    scroll-margin-top: 30px; /* Adjust to match your navbar height */
 }
 
+/*
 .h-screen {
-	height: 100dvh !important;
+    height: 100dvh !important;
 }
 
 .no-select {
-	-webkit-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
+*/
 
-/* scrollbar */
+/* scrollbar
 ::-webkit-scrollbar {
-	width: 8px;
-	height: 8px;
+    width: 8px;
+    height: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-	background: #666;
-	border-radius: 4px;
+    background: #666;
+    border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background: #888;
+    background: #888;
 }
 
 ::-webkit-scrollbar-track {
-	background: transparent;
+    background: transparent;
 }
-
-#justify-center {
-	justify-content: center !important;
-}
+*/

@@ -3,16 +3,16 @@ import "./globals.css";
 import NavbarWrapper from "./Navbar/navbarWrapper";
 
 export default function RootLayout({
-	children,
+  children,
 }: Readonly<{
-	children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-	return (
-		<html lang="hu" className="scroll-smooth">
-			<body>
-				{children}
-				<NavbarWrapper />
-			</body>
-		</html>
-	);
+  return (
+    <html lang="hu">
+      <body>
+        {children}
+        <NavbarWrapper />
+      </body>
+    </html>
+  );
 }
