@@ -25,7 +25,7 @@ export default function Home() {
 
   return (
     <>
-      <main>
+      <main className="overflow-x-hidden">
         <div
           id="home"
           className="relative flex flex-col text-center justify-center items-center h-dvh w-dvw gap-6 p-4"
