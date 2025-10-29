@@ -61,7 +61,7 @@ export default function PriceList() {
   return (
     <>
       <div
-        id="priceList"
+        id="pricelist"
         className="p-10 flex flex-col gap-10 items-center justify-center
 			 		*:flex *:flex-col *:justify-center *:items-center *:gap-4"
       >

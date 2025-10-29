@@ -81,7 +81,7 @@ const Navbar: React.FC<NavbarProps> = ({ links, currentPath }) => {
                     color:
                       currentPath === link.href
                         ? "rgb(255, 255, 255)" // white
-                        : "rgb(209, 213, 219)", // gray-300
+                        : "rgb(255, 255, 255)", // gray-300    rgb(209, 213, 219) // cigany nem mukodik szoval most mindig feher lesz.
                   }}
                   transition={{ ease: "easeInOut", duration: 0.2 }}
                   className={`px-4 py-2 text-lg rounded`}

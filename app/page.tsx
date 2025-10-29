@@ -161,10 +161,7 @@ export default function Home() {
         <footer>
           <div className="bg-[#161b22] p-5 mt-15 text-center">
             <div className="flex justify-center gap-5">
-              <div
-                onClick={() => (window.location.href = "/szolgaltatasaink")}
-                className="font-medium hover:cursor-pointer"
-              >
+              <div className="font-medium hover:cursor-pointer">
                 Szolgáltatások
               </div>
               <div className="font-medium hover:cursor-pointer">Rólunk</div>
