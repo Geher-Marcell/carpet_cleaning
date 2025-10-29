@@ -20,10 +20,14 @@ const OrderWidget: React.FC<widgetProps> = ({
   return (
     <>
       <div
-        className={`text-white  w-75 h-70 relative rounded-xl p-5 ${popular ? "bg-[#111c2d] outline-2 outline-[#3b82f6]" : "bg-[#161b22] outline-1 outline-[#364050]"}`}
+        className={`text-white  w-75 h-70 relative rounded-xl p-5 ${
+          popular
+            ? "bg-[#381b08] outline-2 outline-[#db5d0b]"
+            : "bg-[#161b22] outline-1 outline-[#364050]"
+        }`}
       >
         {popular && (
-          <p className="text-white text-xs font-bold bg-[#3b82f6] absolute -top-3 right-4 rounded-2xl w-fit p-1 pr-2 pl-2">
+          <p className="text-white text-xs font-bold bg-[#db5d0b] absolute -top-3 right-4 rounded-2xl w-fit p-1 pr-2 pl-2">
             NÉPSZERŰ
           </p>
         )}
@@ -34,18 +38,14 @@ const OrderWidget: React.FC<widgetProps> = ({
           {price} Ft<span className="text-sm">/{unit}</span>
         </p>
 
-        <PrimaryButton
-          label="Megrendelés"
-          buttonClass="my-5"
-          colorClass="bg-[#3b82f6]"
-        />
+        <PrimaryButton label="Megrendelés" buttonClass="my-5" />
 
         {description?.map((item, index) => (
           <div
             key={index}
             className="flex items-center text-md font-medium my-1"
           >
-            <FontAwesomeIcon icon={faCheck} className="text-[#3471d4] mr-2.5" />
+            <FontAwesomeIcon icon={faCheck} className="text-[#db5d0b] mr-2.5" />
             <p key={index}>{item}</p>
           </div>
         ))}

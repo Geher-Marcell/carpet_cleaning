@@ -71,20 +71,28 @@ const Navbar: React.FC<NavbarProps> = ({ links, currentPath }) => {
           {isLargerThanMd && (
             <div className="flex flex-row gap-2">
               {links.map((link) => (
-                <Link
+                <motion.div
                   key={link.href}
-                  href={link.href}
-                  className={`px-4 py-2 text-lg rounded hover:bg-neutral-700 transition-colors ${
-                    currentPath === link.href
-                      ? "bg-neutral-700 font-bold"
-                      : "font-medium"
-                  }`}
+                  animate={{
+                    backgroundColor:
+                      currentPath === link.href
+                        ? "rgb(55, 65, 81)" // bg-neutral-700
+                        : "rgba(0, 0, 0, 0)", // transparent
+                    color:
+                      currentPath === link.href
+                        ? "rgb(255, 255, 255)" // white
+                        : "rgb(255, 255, 255)", // gray-300    rgb(209, 213, 219) // cigany nem mukodik szoval most mindig feher lesz.
+                  }}
+                  transition={{ ease: "easeInOut", duration: 0.2 }}
+                  className={`px-4 py-2 text-lg rounded`}
                 >
-                  <span className="mr-2">
-                    <FontAwesomeIcon icon={link.icon} />
-                  </span>
-                  {link.label}
-                </Link>
+                  <a href={link.href}>
+                    <span className="mr-2">
+                      <FontAwesomeIcon icon={link.icon} />
+                    </span>
+                    {link.label}
+                  </a>
+                </motion.div>
               ))}
             </div>
           )}

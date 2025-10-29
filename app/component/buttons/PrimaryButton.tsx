@@ -4,33 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "motion/react";
 import { ButtonProps } from "../props/btnProps";
 
-// type buttonProps = {
-// 	szoveg: string;
-// 	szin: string;
-// 	hoverszin: string;
-// };
-
-// const PrimaryButton: React.FC<buttonProps> = ({ szoveg, szin, hoverszin }) => {
-// 	return (
-// 		<>
-// 			<div>
-// 				<button
-// 					className="text-white font-bold py-2 px-4 rounded-md cursor-pointer w-65 mt-3 mb-3"
-// 					style={{ backgroundColor: szin }}
-// 					onMouseEnter={(e) =>
-// 						(e.currentTarget.style.backgroundColor = hoverszin)
-// 					}
-// 					onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = szin)}
-// 				>
-// 					{szoveg}
-// 				</button>
-// 			</div>
-// 		</>
-// 	);
-// };
-
-// export default PrimaryButton;
-
 const PrimaryButton: React.FC<
   ButtonProps & { callback?: () => void; disableAfterClick?: boolean }
 > = ({
@@ -39,7 +12,6 @@ const PrimaryButton: React.FC<
   labelClass,
   iconClass,
   buttonClass,
-  colorClass = "bg-emerald-700",
   callback,
   disableAfterClick = false,
 }) => {
@@ -51,7 +23,7 @@ const PrimaryButton: React.FC<
       }}
       whileTap={{ scale: 0.98 }}
       transition={{ type: "spring", stiffness: 200, damping: 20 }}
-      className={`${buttonClass} ${colorClass} w-full space-x-1 rounded-md px-4 py-2 text-white cursor-pointer`}
+      className={`${buttonClass} w-full space-x-1 rounded-md px-4 py-2 text-white cursor-pointer bg-[#db5d0b]`}
       onClick={(e) => {
         if (disableAfterClick) {
           (e.target as HTMLButtonElement).disabled = true;

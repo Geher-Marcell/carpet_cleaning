@@ -1,24 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
 @import "tailwindcss";
 
+html {
+    scroll-behavior: smooth !important;
+}
+
 body {
-    margin: 0;
-    padding: 0;
-    height: 100dvh;
+    font-family: "Rubik", sans-serif;
     background-color: #0d1117;
     color: white;
-    font-weight: 400;
 }
 
-* {
-    box-sizing: border-box;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    font-family: "Rubik", sans-serif;
-    font-optical-sizing: auto;
+#services {
+    scroll-margin-top: 30px; /* Adjust to match your navbar height */
 }
 
+#pricelist {
+    scroll-margin-top: 40px; /* Adjust to match your navbar height */
+}
+
+/*
 .h-screen {
     height: 100dvh !important;
 }
@@ -28,8 +30,9 @@ body {
     -ms-user-select: none;
     user-select: none;
 }
+*/
 
-/* scrollbar */
+/* scrollbar
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -47,7 +50,4 @@ body {
 ::-webkit-scrollbar-track {
     background: transparent;
 }
-
-#justify-center {
-    justify-content: center !important;
-}
+*/
