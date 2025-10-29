@@ -25,10 +25,10 @@ export default function Home() {
 
   return (
     <>
-      <main className="h-dvh w-dvw overflow-x-hidden">
+      <main>
         <div
           id="home"
-          className="relative flex flex-col text-center justify-center items-center w-full h-full gap-6 p-4"
+          className="relative flex flex-col text-center justify-center items-center h-dvh w-dvw gap-6 p-4"
           style={{
             backgroundImage: "url(./images/main.png)",
             backgroundRepeat: "no-repeat",
@@ -98,24 +98,24 @@ export default function Home() {
           <div className="flex justify-center flex-col items-center **:text-center">
             <div className="flex flex-wrap gap-5 justify-center">
               <div className="flex items-center justify-center flex-col w-40 h-40 rounded-xl bg-[#161b22] outline-1 outline-[#364050]">
-                <div className="bg-[#243a60] w-10 h-10 flex justify-center items-center rounded-4xl">
-                  <FontAwesomeIcon icon={faLeaf} className="text-[#3471d4]" />
+                <div className="bg-[#582504] w-10 h-10 flex justify-center items-center rounded-4xl">
+                  <FontAwesomeIcon icon={faLeaf} className="text-[#db5d0b]" />
                 </div>
                 <p className="font-medium m-4.5">Környezetbarát</p>
               </div>
               <div className="flex items-center justify-center flex-col w-40 h-40 rounded-xl bg-[#161b22] outline-1 outline-[#364050]">
-                <div className="bg-[#243a60] w-10 h-10 flex justify-center items-center rounded-4xl">
-                  <FontAwesomeIcon icon={faPerson} className="text-[#3471d4]" />
+                <div className="bg-[#582504] w-10 h-10 flex justify-center items-center rounded-4xl">
+                  <FontAwesomeIcon icon={faPerson} className="text-[#db5d0b]" />
                 </div>
                 <p className="font-medium mt-3">
                   Szakértő<br></br> technikusok
                 </p>
               </div>
               <div className="flex items-center justify-center flex-col w-40 h-40 rounded-xl bg-[#161b22] outline-1 outline-[#364050]">
-                <div className="bg-[#243a60] w-10 h-10 flex justify-center items-center rounded-4xl">
+                <div className="bg-[#582504] w-10 h-10 flex justify-center items-center rounded-4xl">
                   <FontAwesomeIcon
                     icon={faThumbsUp}
-                    className="text-[#3471d4]"
+                    className="text-[#db5d0b]"
                   />
                 </div>
                 <p className="font-medium mt-3">
@@ -123,8 +123,8 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex items-center justify-center flex-col w-40 h-40 rounded-xl bg-[#161b22] outline-1 outline-[#364050]">
-                <div className="bg-[#243a60] w-10 h-10 flex justify-center items-center rounded-4xl">
-                  <FontAwesomeIcon icon={faClock} className="text-[#3471d4]" />
+                <div className="bg-[#582504] w-10 h-10 flex justify-center items-center rounded-4xl">
+                  <FontAwesomeIcon icon={faClock} className="text-[#db5d0b]" />
                 </div>
                 <p className="font-medium mt-3">
                   Rugalmas<br></br> időbeosztás
