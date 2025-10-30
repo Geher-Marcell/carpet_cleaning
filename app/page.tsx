@@ -26,6 +26,7 @@ export default function Home() {
 
   return (
     <>
+      <NavbarWrapper />
       <main className="overflow-x-hidden">
         <div
           id="home"
