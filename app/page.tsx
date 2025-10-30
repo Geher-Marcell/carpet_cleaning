@@ -10,6 +10,7 @@ import {
   faPerson,
   faThumbsUp,
 } from "@fortawesome/free-solid-svg-icons";
+import NavbarWrapper from "./Navbar/navbarWrapper";
 
 export default function Home() {
   // const [message, setMessage] = useState("");
@@ -25,6 +26,7 @@ export default function Home() {
 
   return (
     <>
+      <NavbarWrapper />
       <main>
         <div
           id="home"
