@@ -1,6 +1,111 @@
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import {
+	faArrowLeft,
+	faCar,
+	faChair,
+	faMagic,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Checkbox from "../component/buttons/checkbox";
+import PrimaryButton from "../component/buttons/PrimaryButton";
+import Link from "next/link";
 
 export default function Home() {
-  return <></>;
+	return (
+		<div className="h-dvh w-dvw overflow-hidden">
+			<nav className="w-dvw bg-gray-800 p-2 py-4 space-y-4">
+				<div className="h-1/3 w-full flex items-center justify-between px-2">
+					<Link href={"./"}>
+						<FontAwesomeIcon icon={faArrowLeft} className="text-white size-5" />
+					</Link>
+					<h1 className="text-xl font-bold">Szolgáltatás Foglalása</h1>
+					<div className="size-5" />
+				</div>
+				<div
+					className="h-2/3 w-full flex items-center justify-around px-2 max-w-200 mx-auto
+          *:flex-col *:gap-1
+          **:flex **:justify-center **:items-center"
+				>
+					<div className="w-3/12">
+						{Circle(1)}
+						<p className="text-xs">Szolgáltatások</p>
+					</div>
+					<hr className="w-2/12 text-transparent h-0.5 mb-5 bg-[linear-gradient(90deg,rgb(0,255,0)_50%,rgb(255,0,0)_50%)] rounded-full"></hr>
+					<div className="w-3/12">
+						{Circle(2)}
+						<p className="text-xs">Dátum és Idő</p>
+					</div>
+					<hr className="w-2/12 text-transparent h-0.5 mb-5 bg-[linear-gradient(90deg,rgb(0,255,0)_0%,rgb(255,0,0)_0%)] rounded-full"></hr>
+					<div className="w-3/12">
+						{Circle(3)}
+						<p className="text-xs">Részletek</p>
+					</div>
+				</div>
+			</nav>
+
+			<main className="h-full bg-gray-900 p-5">
+				<p className="text-white text-lg font-bold mb-5">
+					Milyen szolgáltatásra van szüksége?
+				</p>
+				<div className="space-y-4">
+					<div className="bg-gray-700 rounded-2xl p-4 flex items-center justify-between gap-4">
+						<div className="w-12 text-center">
+							<FontAwesomeIcon icon={faCar} className="text-white" size="2x" />
+						</div>
+						<div className="w-full">
+							<p>Autó belső tisztítás</p>
+							<p className="text-xs text-gray-400">
+								Teljes belső porszívózás és letörlés.
+							</p>
+						</div>
+						<Checkbox label={""} checked={true} />
+					</div>
+					<div className="bg-gray-700 rounded-2xl p-4 flex items-center justify-between gap-4">
+						<div className="w-12 text-center">
+							<FontAwesomeIcon
+								icon={faMagic}
+								className="text-white"
+								size="2x"
+							/>
+						</div>
+						<div className="w-full">
+							<p>Szőnyegtisztítás</p>
+							<p className="text-xs text-gray-400">
+								Mélygőzös tisztítás minden típusú szőnyeghez.
+							</p>
+						</div>
+						<Checkbox label={""} />
+					</div>
+					<div className="bg-gray-700 rounded-2xl p-4 flex items-center justify-between gap-4">
+						<div className="w-12 text-center">
+							<FontAwesomeIcon
+								icon={faChair}
+								className="text-white"
+								size="2x"
+							/>
+						</div>
+						<div className="w-full">
+							<p>Kárpittisztítás</p>
+							<p className="text-xs text-gray-400">
+								Kanapékhoz, székekhez és egyéb bútorokhoz.
+							</p>
+						</div>
+						<Checkbox label={""} />
+					</div>
+				</div>
+				<div className="mt-8">
+					<PrimaryButton label="Következő" />
+				</div>
+			</main>
+		</div>
+	);
+}
+
+function Circle(num: number) {
+	return (
+		<>
+			<div className="bg-[#853a09] w-8 h-8 rounded-4xl">
+				<p>{num}</p>
+			</div>
+		</>
+	);
 }
