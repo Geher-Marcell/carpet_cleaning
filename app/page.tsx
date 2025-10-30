@@ -28,7 +28,7 @@ export default function Home() {
       <main>
         <div
           id="home"
-          className="relative flex flex-col text-center justify-center items-center h-dvh w-dvw gap-6 p-4"
+          className="relative flex flex-col text-center justify-center items-center h-dvh w-dvw"
           style={{
             backgroundImage: "url(./images/main.png)",
             backgroundRepeat: "no-repeat",
@@ -44,11 +44,11 @@ export default function Home() {
             <h1 className="text-5xl font-bold">
               Minden alkalommal makulátlanul tiszta
             </h1>
-            <h5 className="text-xl font-medium">
+            <h5 className="text-xl font-medium px-5">
               Tapasztalja meg a legjobb szőnyeg- és autó- takarítási
               szolgáltatásokat.
             </h5>
-            <div className="w-100">
+            <div className="w-75">
               <PrimaryButton label="Foglaljon most" />
             </div>
           </div>
