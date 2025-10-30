@@ -47,11 +47,16 @@ export default function Home() {
 							Minden alkalommal makulátlanul tiszta
 						</h1>
 						<h5 className="text-xl font-medium px-5">
-							Tapasztalja meg a legjobb szőnyeg- és autó- takarítási
+							Tapasztalja meg a legjobb szőnyeg- és autótakarítási
 							szolgáltatásokat.
 						</h5>
 						<div className="w-75">
-							<PrimaryButton label="Foglaljon most" />
+							<PrimaryButton
+								label="Foglaljon most"
+								callback={() => {
+									window.location.href = "./order";
+								}}
+							/>
 						</div>
 					</div>
 				</div>
@@ -108,7 +113,7 @@ export default function Home() {
 
 				<hr className="text-gray-800" />
 
-				<div id="priceList" className="pt-10">
+				<div id="pricelist" className="pt-10">
 					<h1 className="text-4xl text-center font-bold">Áraink</h1>
 				</div>
 				<PriceList />

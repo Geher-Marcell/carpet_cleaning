@@ -3,6 +3,7 @@ import {
 	faCar,
 	faChair,
 	faMagic,
+	IconDefinition,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Checkbox from "../component/buttons/checkbox";
@@ -22,8 +23,8 @@ export default function Home() {
 				</div>
 				<div
 					className="h-2/3 w-full flex items-center justify-around px-2 max-w-200 mx-auto
-          *:flex-col *:gap-1
-          **:flex **:justify-center **:items-center"
+          				*:flex-col *:gap-1
+          				**:flex **:justify-center **:items-center"
 				>
 					<div className="w-3/12">
 						{Circle(1)}
@@ -47,56 +48,44 @@ export default function Home() {
 					Milyen szolgáltatásra van szüksége?
 				</p>
 				<div className="space-y-4">
-					<div className="bg-gray-700 rounded-2xl p-4 flex items-center justify-between gap-4">
-						<div className="w-12 text-center">
-							<FontAwesomeIcon icon={faCar} className="text-white" size="2x" />
-						</div>
-						<div className="w-full">
-							<p>Autó belső tisztítás</p>
-							<p className="text-xs text-gray-400">
-								Teljes belső porszívózás és letörlés.
-							</p>
-						</div>
-						<Checkbox label={""} checked={true} />
-					</div>
-					<div className="bg-gray-700 rounded-2xl p-4 flex items-center justify-between gap-4">
-						<div className="w-12 text-center">
-							<FontAwesomeIcon
-								icon={faMagic}
-								className="text-white"
-								size="2x"
-							/>
-						</div>
-						<div className="w-full">
-							<p>Szőnyegtisztítás</p>
-							<p className="text-xs text-gray-400">
-								Mélygőzös tisztítás minden típusú szőnyeghez.
-							</p>
-						</div>
-						<Checkbox label={""} />
-					</div>
-					<div className="bg-gray-700 rounded-2xl p-4 flex items-center justify-between gap-4">
-						<div className="w-12 text-center">
-							<FontAwesomeIcon
-								icon={faChair}
-								className="text-white"
-								size="2x"
-							/>
-						</div>
-						<div className="w-full">
-							<p>Kárpittisztítás</p>
-							<p className="text-xs text-gray-400">
-								Kanapékhoz, székekhez és egyéb bútorokhoz.
-							</p>
-						</div>
-						<Checkbox label={""} />
-					</div>
+					{Card(
+						faCar,
+						"Autó belső tisztítás",
+						"Teljes belső porszívózás és letörlés."
+					)}
+					{Card(
+						faMagic,
+						"Szőnyeg tisztítás",
+						"Mélygőzös tisztítás minden típusú szőnyeghez."
+					)}
+					{Card(
+						faChair,
+						"Kárpittisztítás",
+						"Kanapékhoz, székekhez és egyéb bútorokhoz."
+					)}
 				</div>
 				<div className="mt-8">
 					<PrimaryButton label="Következő" />
 				</div>
 			</main>
 		</div>
+	);
+}
+
+function Card(icon: IconDefinition, title: string, description: string) {
+	return (
+		<>
+			<div className="bg-gray-700 rounded-2xl p-4 flex items-center justify-between gap-4">
+				<div className="w-12 text-center">
+					<FontAwesomeIcon icon={icon} size="2x" />
+				</div>
+				<div className="w-full">
+					<h1>{title}</h1>
+					<p className="text-xs text-gray-400">{description}</p>
+				</div>
+				<Checkbox label={""} checked={true} />
+			</div>
+		</>
 	);
 }
 
