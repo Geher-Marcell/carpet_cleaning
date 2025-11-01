@@ -150,6 +150,7 @@ export default function OrderPage() {
 
 			const result = await res.json();
 			console.log("Order submitted successfully:", result);
+			window.location.href = "/";
 			alert("Rendelés sikeresen leadva!");
 		} catch (error) {
 			console.error("Error submitting order:", error);
