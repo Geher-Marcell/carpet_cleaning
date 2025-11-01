@@ -30,7 +30,10 @@ export default function OrderPage() {
 		street: "",
 		floor: "",
 		notes: "",
+		address: "",
 	});
+	const [errors, setErrors] = useState<{ [key: string]: string }>({});
+	const [showErrors, setShowErrors] = useState(false);
 
 	function Card(icon: IconDefinition, title: string, description: string) {
 		return (
@@ -61,52 +64,16 @@ export default function OrderPage() {
 		);
 	}
 
-	function InputGroup(
-		label: string,
-		type: string,
-		placeholder?: string,
-		maxLength?: number,
-		name?: string
-	) {
-		return (
-			<div className="w-full">
-				<label className="block text-sm text-left pl-1 font-medium text-white mb-1">
-					{label}
-				</label>
-				<input
-					required
-					type={type}
-					name={name}
-					value={formData[name as keyof typeof formData] || ""}
-					onChange={HandleInputChange}
-					className="w-full p-2 rounded-lg bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-					{...(placeholder ? { placeholder: placeholder } : {})}
-					{...(maxLength ? { maxLength: maxLength } : {})}
-				/>
-			</div>
-		);
-	}
-
-	function Circle(num: number) {
-		return (
-			<>
-				<div className="bg-[#853a09] w-8 h-8 rounded-4xl">
-					<p>{num}</p>
-				</div>
-			</>
-		);
-	}
-
 	function ValidateForm(data: typeof formData) {
 		const errors: { [key: string]: string } = {};
 
-		if (data.name.trim() === "" || /[<>\/\\{}[\]~`]/.test(Date.name)) {
+		if (data.name.trim() === "" || /[<>\/\\{}[\]~`]/.test(data.name)) {
 			errors.name = "Érvénytelen név";
 		}
 
 		if (
 			data.phone.trim() === "" ||
-			!/^(\+36|06)(20|30|31|50|70)\d{3}\d{4}$/.test(data.phone)
+			!/^\+36|06(20|30|31|50|70)\d{7}$/.test(data.phone)
 		) {
 			errors.phone = "Érvénytelen telefonszám";
 		}
@@ -138,18 +105,106 @@ export default function OrderPage() {
 		setFormData((prev) => ({ ...prev, [name]: value }));
 	}
 
-	function HandleSubmit() {
-		const errors = ValidateForm(formData);
-		if (Object.keys(errors).length > 0) {
-			console.log("Validation errors:", errors);
-			return;
+	function HandleFormFill(): boolean {
+		const validationErrors = ValidateForm(formData);
+		setErrors(validationErrors);
+		setShowErrors(true);
+
+		if (Object.keys(validationErrors).length > 0) {
+			console.log("Validation errors:", validationErrors);
+			return false;
 		}
+
 		console.log("Form submitted successfully:", formData);
-		//TODO - Submit to api and format the data properly
+		setFormData((prev) => ({
+			...prev,
+			address: `${formData.postalCode} ${formData.city} ${formData.street} ${formData.floor}`,
+		}));
+		return true;
+	}
+
+	async function HandleSubmit() {
+		try {
+			const res = await fetch("/api/orders", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					customer: {
+						name: formData.name,
+						email: formData.email,
+						phoneNumber: formData.phone,
+					},
+					// serviceType: selectedService,
+					serviceType: 1, // Temporary fixed value
+					scheduledDate: formData.date,
+					serviceDetails: formData.notes,
+					address: formData.address,
+				}),
+			});
+
+			if (!res.ok) {
+				throw new Error(`HTTP error! status: ${res.status}`);
+			}
+
+			const result = await res.json();
+			console.log("Order submitted successfully:", result);
+			alert("Rendelés sikeresen leadva!");
+		} catch (error) {
+			console.error("Error submitting order:", error);
+			alert("Rendelés leadása sikertelen. Kérem próbálja újra!");
+		}
+	}
+
+	function InputGroup(
+		label: string,
+		name: keyof typeof formData,
+		type: string,
+		placeholder?: string,
+		maxLength?: number
+	) {
+		const error = showErrors && errors[name];
+
+		return (
+			<div className="w-full">
+				<label
+					className={`block text-sm text-left pl-1 font-medium mb-1 ${
+						error ? "text-red-500" : "text-white"
+					}`}
+				>
+					{label}
+					{error && <span className="ml-2 text-xs">{error}</span>}
+				</label>
+				<input
+					required
+					type={type}
+					name={name}
+					value={formData[name] || ""}
+					onChange={HandleInputChange}
+					className={`w-full p-2 rounded-lg bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+						error ? "border-red-500 border-2" : "text-white"
+					}`}
+					{...(placeholder ? { placeholder: placeholder } : {})}
+					{...(maxLength ? { maxLength: maxLength } : {})}
+				/>
+			</div>
+		);
+	}
+
+	function Circle(num: number) {
+		return (
+			<>
+				<div className="bg-[#853a09] w-8 h-8 rounded-4xl">
+					<p>{num}</p>
+				</div>
+			</>
+		);
 	}
 
 	return (
 		<div className="h-dvh w-dvw overflow-x-hidden bg-gray-900">
+			{/* NAVIGATION (TOP BAR) */}
 			<nav className="w-dvw bg-gray-800 p-2 py-4 space-y-4">
 				<div className="h-1/3 w-full flex items-center justify-between px-2">
 					<Link href={"./"}>
@@ -181,6 +236,7 @@ export default function OrderPage() {
 			</nav>
 
 			<main className="h-ful p-5 max-w-200 mx-auto">
+				{/* The first page, service type selection */}
 				{openPage === 0 && (
 					<div>
 						<p className="text-white text-lg font-bold mb-5">
@@ -244,6 +300,9 @@ export default function OrderPage() {
 						</div>
 					</div>
 				)}
+
+				{/* The second page, user information form */}
+
 				{openPage === 1 && (
 					<div>
 						<p className="text-white text-lg font-bold mb-5">
@@ -261,57 +320,57 @@ export default function OrderPage() {
 							/>
 						</p>
 						<div className="space-y-4 *:mx-auto">
-							<div className="*:inline-block text-center space-x-4">
-								<div className="w-80">
-									{InputGroup("Név", "text", "Teljes név", 50, "name")}
+							<div className="*:inline-block text-center space-x-4 space-y-4">
+								<div className="w-full sm:w-74">
+									{InputGroup("Név", "name", "text", "Teljes név", 50)}
 								</div>
-								<div className="w-50">
+								<div className="w-full sm:w-56">
 									{InputGroup(
 										"Telefonszám",
+										"phone",
 										"text",
 										"Telefonszám",
-										12,
-										"phone"
+										12
 									)}
 								</div>
 							</div>
-							<div className="w-134">
-								{InputGroup("E-Mail", "email", "E-Mail cím", 50, "email")}
+							<div className="w-full sm:w-134">
+								{InputGroup("E-Mail", "email", "email", "E-Mail cím", 50)}
 							</div>
 							<hr />
-							<div className="*:inline-block text-center space-x-4">
-								<div className="w-65">
-									{InputGroup("Dátum", "date", undefined, undefined, "date")}
+							<div className="*:inline-block text-center space-x-4 space-y-4">
+								<div className="w-full sm:w-65">
+									{InputGroup("Dátum", "date", "date", undefined, undefined)}
 								</div>
-								<div className="w-65">
-									{InputGroup("Irányítószám", "text", "", 4, "postalCode")}
+								<div className="w-full sm:w-65">
+									{InputGroup("Irányítószám", "postalCode", "text", "", 4)}
 								</div>
 							</div>
-							<div className="w-134">
-								{InputGroup("Település", "text", undefined, undefined, "city")}
+							<div className="w-full sm:w-134">
+								{InputGroup("Település", "city", "text", undefined, undefined)}
 							</div>
-							<div className="*:inline-block text-center space-x-4">
-								<div className="w-90">
+							<div className="*:inline-block text-center space-x-4 space-y-4">
+								<div className="w-full sm:w-90">
 									{InputGroup(
 										"Utca és Házszám",
+										"street",
 										"text",
 										undefined,
-										undefined,
-										"street"
+										undefined
 									)}
 								</div>
-								<div className="w-40">
+								<div className="w-full sm:w-40">
 									{InputGroup(
 										"Emelet / Ajtó",
+										"floor",
 										"text",
 										undefined,
-										undefined,
-										"floor"
+										undefined
 									)}
 								</div>
 							</div>
 							<hr />
-							<div className="w-134">
+							<div className="w-full sm:w-134">
 								<div className="w-full">
 									<label className="block text-sm text-left pl-1 font-medium text-white mb-1">
 										Megjegyzés
@@ -328,13 +387,59 @@ export default function OrderPage() {
 								</div>
 							</div>
 						</div>
-						<div className="mt-8">
+						<div className={`mt-8 max-w-120 mx-auto `}>
 							<PrimaryButton
 								label="Következő"
 								callback={() => {
+									if (HandleFormFill()) {
+										setTimeout(() => {
+											setOpenPage(openPage + 1);
+										}, 200);
+									}
+								}}
+							/>
+						</div>
+					</div>
+				)}
+
+				{/* The third page, summary and confirmation */}
+				{openPage === 2 && (
+					<div>
+						<p className="text-white text-lg font-bold mb-5">
+							Rendelés Összegzés
+							<SmallButton
+								label={"Előző"}
+								buttonClass="inline-block ml-4"
+								icon={faCaretLeft}
+								callback={() => {
 									setTimeout(() => {
-										HandleSubmit();
+										setOpenPage(openPage - 1);
 									}, 200);
+								}}
+								disableAfterClick={true}
+							/>
+						</p>
+						<div>
+							<h2>Személyes adatok:</h2>
+							<ul className="list-disc list-inside mb-4">
+								<li>Név: {formData.name}</li>
+								<li>Telefonszám: {formData.phone}</li>
+								<li>E-Mail: {formData.email}</li>
+							</ul>
+							<h2>Szolgáltatás adatai:</h2>
+							<ul className="list-disc list-inside mb-4">
+								<li>Szolgáltatás: {selectedService}</li>
+								<li>Szolgáltatás véghezvitelének dátuma: {formData.date}</li>
+								<li>Szolgáltatás helye: {formData.address}</li>
+								<li>Megjegyzés: {formData.notes || "Nincs megjegyzés"}</li>
+							</ul>
+						</div>
+
+						<div className="mt-8 max-w-120 mx-auto">
+							<PrimaryButton
+								label="Rendelés megerősítése"
+								callback={() => {
+									HandleSubmit();
 								}}
 							/>
 						</div>
