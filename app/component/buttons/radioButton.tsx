@@ -5,51 +5,51 @@ import { motion } from "motion/react";
 import React from "react";
 import { ButtonProps } from "../props/btnProps";
 
-type CheckboxProps = ButtonProps & {
+type RadioButtonProps = ButtonProps & {
 	checked?: boolean;
-	onChange?: (checked: boolean) => void;
+	onChange?: (value: string) => void;
+	groupName: string;
+	value: string;
 };
 
-const Checkbox: React.FC<CheckboxProps> = ({
+const RadioButton: React.FC<RadioButtonProps> = ({
 	label,
 	labelClass,
 	checked,
 	onChange,
+	groupName,
+	value,
 }) => {
-	const [isChecked, setIsChecked] = React.useState(checked);
 	return (
 		<div className="flex items-center gap-x-2 text-white">
 			<motion.button
 				id={label}
-				className={`relative inline-flex h-6 w-6 cursor-pointer items-center rounded-md bg-neutral-500`}
+				className={`relative inline-flex h-6 w-6 cursor-pointer items-center rounded-full bg-neutral-500`}
 				whileHover={{ scale: 1.05 }}
 				whileTap={{ scale: 0.95 }}
 				transition={{ type: "spring", stiffness: 400, damping: 17 }}
 				onClick={() => {
 					if (onChange) {
-						onChange(!isChecked);
+						onChange(value);
 					}
-					setIsChecked(!isChecked);
 				}}
 			>
 				<motion.div
-					initial={{ scale: 1, top: 0, right: 0 }}
+					initial={{ scale: 1 }}
 					animate={{
-						scale: isChecked ? 1 : 0,
-						top: isChecked ? 0 : "50%",
-						right: isChecked ? 0 : "50%",
-						backgroundColor: isChecked
+						scale: checked ? 1 : 0,
+						backgroundColor: checked
 							? "rgba(251, 44, 54, 1)"
 							: "rgba(251, 44, 54, 0)",
 					}}
 					transition={{ ease: "easeOut", duration: 0.2 }}
-					className={`absolute inset-0 rounded-md`}
+					className={`absolute inset-0 rounded-full`}
 				>
 					{" "}
 					<FontAwesomeIcon
-						icon={isChecked ? faCheck : faTimes}
+						icon={faCheck}
 						className={`z-10 m-auto text-white ${
-							isChecked ? "opacity-100" : "opacity-0"
+							checked ? "opacity-100" : "opacity-0"
 						} `}
 					/>
 				</motion.div>
@@ -61,4 +61,4 @@ const Checkbox: React.FC<CheckboxProps> = ({
 	);
 };
 
-export default Checkbox;
+export default RadioButton;
