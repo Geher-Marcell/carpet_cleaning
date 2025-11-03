@@ -20,6 +20,16 @@ const ordersTable = `
     );
 `;
 
+const dropQuery = `
+	DO $$ DECLARE
+		r RECORD;
+	BEGIN
+		FOR r IN (SELECT tablename FROM pg_tables WHERE schemaname = 'public') LOOP
+			EXECUTE 'DROP TABLE IF EXISTS ' || quote_ident(r.tablename) || ' CASCADE';
+		END LOOP;
+	END $$;
+`;
+
 const db = new Pool({
 	connectionString: process.env.DATABASE_URL,
 	ssl: {
@@ -27,7 +37,7 @@ const db = new Pool({
 	},
 });
 
-async function CreateTables() {
+async function Doit(command) {
 	if (!process.env.DATABASE_URL) {
 		console.error("DATABASE_URL is not set in environment variables.");
 		process.exit(1);
@@ -44,12 +54,12 @@ async function CreateTables() {
 	}
 	console.log("Success");
 
-	console.log("Creating tables");
+	console.log( command == "create" ? "Creating" : "Dropping" + " tables");
 	try {
-		await conn.query(ordersTable);
-		console.log("Tables created successfully.");
+		await conn.query(command=="create" ? ordersTable : dropQuery);
+		console.log("Tables " + (command == "create" ? "created" : "dropped") + " successfully.");
 	} catch (error) {
-		console.error("Error creating tables:", error);
+		console.error("Error " + (command == "create" ? "creating" : "dropping") + " tables:", error);
 		process.exit(1);
 	} finally {
 		await conn.release();
@@ -59,4 +69,13 @@ async function CreateTables() {
 	process.exit(0);
 }
 
-CreateTables();
+const commands = ["create", "drop"];
+
+const command = process.argv[2];
+
+if(!commands.includes(command)) {
+	console.log("Please provide a valid command: create or drop");
+	process.exit(1);
+}
+
+Doit(command);
