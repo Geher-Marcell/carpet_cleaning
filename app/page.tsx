@@ -11,6 +11,7 @@ import {
 	faThumbsUp,
 } from "@fortawesome/free-solid-svg-icons";
 import NavbarWrapper from "./Navbar/navbarWrapper";
+import Carousel from "./component/pageModules/carouselModule";
 
 export default function Home() {
 	// const [message, setMessage] = useState("");
@@ -120,7 +121,7 @@ export default function Home() {
 
 				<hr className="text-gray-800" />
 
-				<h1 className="text-3xl font-semibold flex justify-center mb-10 mt-9">
+				{/* <h1 className="text-3xl font-semibold flex justify-center mb-10 mt-9">
 					Vélemények
 				</h1>
 				<div className="flex flex-wrap gap-5 justify-center">
@@ -139,6 +140,10 @@ export default function Home() {
 						</p>
 						<p className="text-gray-400 font-semibold">- Mike R.</p>
 					</div>
+				</div>
+				<hr className="text-gray-800 mt-10" /> */}
+				<div>
+					<Carousel title="Vélemények" />
 				</div>
 				<footer>
 					<div className="bg-[#161b22] p-5 mt-15 text-center">
