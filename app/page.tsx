@@ -11,7 +11,8 @@ import {
 	faThumbsUp,
 } from "@fortawesome/free-solid-svg-icons";
 import NavbarWrapper from "./Navbar/navbarWrapper";
-import Carousel from "./component/pageModules/carouselModule";
+import Carousel from "./component/pageModules/Reviews/ReviewsCarousel";
+import ReviewsGrid from "./component/pageModules/Reviews/ReviewsGrid";
 
 export default function Home() {
 	// const [message, setMessage] = useState("");
@@ -121,29 +122,16 @@ export default function Home() {
 
 				<hr className="text-gray-800" />
 
-				{/* <h1 className="text-3xl font-semibold flex justify-center mb-10 mt-9">
-					Vélemények
-				</h1>
-				<div className="flex flex-wrap gap-5 justify-center">
-					<div className="bg-[#161b22] outline-1 outline-[#364050] w-85 h-40 p-3.5 rounded-md">
-						<p className="italic mb-2 font-medium">
-							A szőnyegeim soha nem néztek ki jobban! A csapat profi, barátságos
-							volt, és csodálatos munkát végzett. Nagyon ajánlom!
-						</p>
-						<p className="text-gray-400 font-semibold">- Sára J.</p>
-					</div>
-					<div className="bg-[#161b22] outline-1 outline-[#364050] w-85 h-40 p-3.5 rounded-md">
-						<p className="italic mb-2 font-medium">
-							Az autókozmetikai szolgáltatás kivételes volt. Az autóm úgy néz ki
-							és olyan illatú, mint egy új. Annyira le vagyok nyűgözve a
-							részletekre való odafigyeléstől.
-						</p>
-						<p className="text-gray-400 font-semibold">- Mike R.</p>
-					</div>
-				</div>
-				<hr className="text-gray-800 mt-10" /> */}
 				<div>
-					<Carousel title="Vélemények" />
+					<h1 className="text-3xl font-semibold flex justify-center mb-10 mt-9">
+						Vélemények
+					</h1>
+					<div className="hidden md:block">
+						<ReviewsGrid />
+					</div>
+					<div className="block md:hidden">
+						<Carousel />
+					</div>
 				</div>
 				<footer>
 					<div className="bg-[#161b22] p-5 mt-15 text-center">
