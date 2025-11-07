@@ -1,15 +1,7 @@
 import { NextResponse } from "next/server";
-import { Pool } from "pg";
-import dotenv from "dotenv";
+import Database from "../utils/Database";
 
-dotenv.config();
-
-const db = new Pool({
-	connectionString: process.env.DATABASE_URL,
-	ssl: {
-		rejectUnauthorized: false,
-	},
-});
+const db = new Database();
 
 const BlockedCharactersAndWords = [
 	"'",
@@ -47,7 +39,7 @@ export async function GET(request: Request) {
 
 	try {
 		const selectQuery = "SELECT * FROM orders";
-		const result = await db.query(selectQuery);
+		const result = await db.Read(selectQuery);
 		return NextResponse.json({ orders: result.rows }, { status: 200 });
 	} catch (error) {
 		console.error("Error fetching orders:", error);
@@ -90,11 +82,11 @@ export async function POST(request: Request) {
 			scheduledDate,
 			address,
 		];
-		const result = await db.query(query, values);
-		console.log("Order inserted:", result.rows[0]);
+		const result = await db.Write(query, values);
+		console.log("Order inserted:", result);
 
 		return NextResponse.json(
-			{ message: "Order created successfully", order: result.rows[0] },
+			{ message: "Order created successfully", order: result },
 			{ status: 201 }
 		);
 	} catch (error) {

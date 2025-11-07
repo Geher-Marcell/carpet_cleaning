@@ -1,7 +1,6 @@
-import { Pool } from "pg";
-import dotenv from "dotenv";
+import Database from "../app/api/utils/Database.js";
 
-dotenv.config();
+const db = new Database();
 
 const ordersTable = `
     CREATE TABLE IF NOT EXISTS orders (
@@ -20,8 +19,12 @@ const ordersTable = `
     );
 `;
 
-const dropQuery = `
-	DO $$ DECLARE
+const dropQuery = db.usingSqlite ? 
+	`SELECT 'DROP TABLE IF EXISTS ' || name || ';' AS query
+    FROM sqlite_master
+    WHERE type = 'table' AND name NOT LIKE 'sqlite_%';`
+	:
+	` $$ DECLARE
 		r RECORD;
 	BEGIN
 		FOR r IN (SELECT tablename FROM pg_tables WHERE schemaname = 'public') LOOP
@@ -30,39 +33,15 @@ const dropQuery = `
 	END $$;
 `;
 
-const db = new Pool({
-	connectionString: process.env.DATABASE_URL,
-	ssl: {
-		rejectUnauthorized: false,
-	},
-});
-
 async function Doit(command) {
-	if (!process.env.DATABASE_URL) {
-		console.error("DATABASE_URL is not set in environment variables.");
-		process.exit(1);
-	}
-
-	let conn;
-
-	console.log("Connecting to the database");
-	try {
-		conn = await db.connect();
+	try{
+		await db.Write(command=="create" ? ordersTable : dropQuery);
+		console.log("Table " + command + " ran successfully.");
 	} catch (error) {
-		console.error("Error connecting to the database:", error);
-		process.exit(1);
-	}
-	console.log("Success");
-
-	console.log( command == "create" ? "Creating" : "Dropping" + " tables");
-	try {
-		await conn.query(command=="create" ? ordersTable : dropQuery);
-		console.log("Tables " + (command == "create" ? "created" : "dropped") + " successfully.");
-	} catch (error) {
-		console.error("Error " + (command == "create" ? "creating" : "dropping") + " tables:", error);
+		console.error("Error with table " + command + ":", error);
 		process.exit(1);
 	} finally {
-		await conn.release();
+		await db.Close();
 	}
 
 	console.log("Done");
