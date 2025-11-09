@@ -1,102 +1,76 @@
+"use client";
+import { useEffect, useState } from "react";
 import OrderWidget from "../widgets/orderWidget";
 
-export default function PriceList() {
-	const carpetPrices = [
-		{
-			title: "Standard Szoba",
-			price: "15 000",
-			unit: "szoba",
-			description: ["Mélytisztítás", "Folteltávolítás", "Szagtalanítás"],
-		},
-		{
-			title: "Lépcsőház",
-			price: "9000",
-			unit: "lépcsősor",
-			description: ["Mélytisztítás", "Kézi részletezés"],
-		},
-		{
-			title: "Kárpittisztítás",
-			price: "24 000",
-			unit: "darab",
-			description: ["Kanapé, fotel", "Szövetvédelem"],
-		},
-		{
-			title: "Speciális Kezelések",
-			price: "12 000",
-			unit: "kezelés",
-			description: ["Kisállatszag eltávolítás", "Allergén kezelés"],
-		},
-	];
+interface Service {
+	name: string;
+	price: string;
+	description: string;
+	unit: string;
+	hot?: boolean;
+	category: string;
+}
 
-	const carPrices = [
-		{
-			title: "Külső Mosás",
-			price: "12 000",
-			unit: "autó",
-			description: ["Kézi mosás", "Viaszolás", "Gumiabroncs ápolás"],
-		},
-		{
-			title: "Belső Részletezés",
-			price: "18 000",
-			unit: "autó",
-			description: ["Porszívózás", "Portörlés", "Ablaktisztítás"],
-		},
-		{
-			title: "Teljes Körű Szolgáltatás",
-			price: "27 000",
-			unit: "autó",
-			description: ["Külső mosás", "Belső részletezés"],
-			popular: true,
-		},
-		{
-			title: "Kiegészítők",
-			price: "6 000",
-			unit: "kiegészítő",
-			description: ["Motortér tisztítás", "Fényszóró felújítás"],
-		},
-	];
+export default function PriceList() {
+	const [services, setServices] = useState<Record<string, Service[]>>({});
+
+	useEffect(() => {
+		fetch("/api/services") //GET request
+			.then((res) => res.json())
+			.then((data) => {
+				const grouped = data.services.reduce(
+					(acc: Record<string, Service[]>, service: Service) => {
+						const type =
+							service.category?.charAt(0).toUpperCase() +
+							service.category?.slice(1) +
+							"tisztítás";
+						if (!type) return acc; // Skip invalid categories
+
+						if (!acc[type]) {
+							acc[type] = [];
+						}
+						acc[type].push(service);
+						return acc;
+					},
+					{}
+				);
+				setServices(grouped);
+			});
+	}, []);
 
 	return (
 		<>
 			<div
 				className="p-10 flex flex-col gap-10 items-center justify-center
-			 		*:flex *:flex-col *:justify-center *:items-center *:gap-4"
+					*:flex *:flex-col *:justify-center *:items-center *:gap-4"
 			>
-				<div>
-					<h3 className="text-2xl text-neutral-200 font-semibold pb-3">
-						Szőnyegtisztítás
-					</h3>
-
-					<div className="flex flex-wrap gap-5 justify-center items-center">
-						{carpetPrices.map((service, index) => (
-							<OrderWidget
-								key={index}
-								title={service.title}
-								price={service.price}
-								unit={service.unit}
-								description={service.description}
-							/>
-						))}
+				{Object.keys(services).map((group, index) => (
+					<div key={index}>
+						<h3 className="text-2xl text-neutral-200 font-semibold pb-3">
+							{group || "Általános tisztítás"}
+						</h3>
+						<div className="flex flex-wrap gap-5 justify-center items-center">
+							{services[group]?.map((service, idx) => (
+								// <OrderWidget
+								// 	key={idx}
+								// 	title={service.name || "Unknown Service"}
+								// 	price={service.price || "-1"}
+								// 	unit={service.unit || "unit"}
+								// 	description={
+								// 		service.description || "No description available"
+								// 	}
+								// 	popular={service.hot}
+								// />
+								<div key={idx}>
+									{service.name}
+									<br />
+									{service.price}/{service.unit} <br />
+									{service.description}
+								</div>
+							))}
+						</div>
 					</div>
-				</div>
-				<div>
-					<h3 className="text-2xl text-neutral-200 font-semibold pb-3">
-						Autótisztítás
-					</h3>
-
-					<div className="flex flex-wrap gap-5 justify-center items-center">
-						{carPrices.map((service, index) => (
-							<OrderWidget
-								key={index}
-								title={service.title}
-								price={service.price}
-								unit={service.unit}
-								description={service.description}
-								popular={service.popular}
-							/>
-						))}
-					</div>
-				</div>
+				))}
 			</div>
 		</>
 	);
