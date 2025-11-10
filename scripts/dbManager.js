@@ -50,7 +50,7 @@ const makeQuery = `
         ('Külső Mosás', 'Teljes körű külső autómosás és védő viaszolás.', 15000, 'autó', 2, 'faHandsWash', 'Kézi mosás/Védő viasz'),
         ('Teljes Körű Autóápolás', 'Belső és külső tisztítás egy csomagban.', 30000, 'autó', 2, 'faCarSide', 'Teljes körű szolgáltatás');
 
-	UPDATE services SET hot = TRUE WHERE id = 1 OR id = 6;
+	  UPDATE services SET hot = TRUE WHERE id = 1 OR id = 6;
 `;
 
 const dropQuery = db.usingSqlite

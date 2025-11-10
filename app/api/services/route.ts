@@ -15,9 +15,9 @@ async function FetchServices() {
 }
 
 export async function GET() {
-  // if (services?.length === 0) {
-  await FetchServices();
-  // }
+  if (services?.length === 0) {
+    await FetchServices();
+  }
 
   return new Response(JSON.stringify({ services }), { status: 200 });
 }
