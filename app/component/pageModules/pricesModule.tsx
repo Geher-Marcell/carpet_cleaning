@@ -1,25 +1,17 @@
 "use client";
 import { useEffect, useState } from "react";
 import OrderWidget from "../widgets/orderWidget";
-
-interface Service {
-  name: string;
-  price: string;
-  description: string;
-  unit: string;
-  hot?: boolean;
-  category: string;
-}
+import { ServiceProps } from "../props/serviceProps";
 
 export default function PriceList() {
-  const [services, setServices] = useState<Record<string, Service[]>>({});
+  const [services, setServices] = useState<Record<string, ServiceProps[]>>({});
 
   useEffect(() => {
     fetch("/api/services") //GET request
       .then((res) => res.json())
       .then((data) => {
         const grouped = data.services.reduce(
-          (acc: Record<string, Service[]>, service: Service) => {
+          (acc: Record<string, ServiceProps[]>, service: ServiceProps) => {
             const type =
               service.category?.charAt(0).toUpperCase() +
               service.category?.slice(1) +
@@ -54,7 +46,7 @@ export default function PriceList() {
                 <OrderWidget
                   key={idx}
                   title={service.name || "Unknown Service"}
-                  price={service.price || "-1"}
+                  price={service.price || -1}
                   unit={service.unit || "unit"}
                   description={
                     service.description || "No description available"

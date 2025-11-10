@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 type widgetProps = {
   title: string;
-  price: string;
+  price: number;
   description: string;
   unit: string;
   popular?: boolean;
