@@ -2,6 +2,7 @@ import PrimaryButton from "@/app/component/buttons/PrimaryButton";
 import { faFire } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons/faCheck";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useRouter } from "next/navigation";
 
 type widgetProps = {
   title: string;
@@ -18,6 +19,8 @@ const OrderWidget: React.FC<widgetProps> = ({
   unit,
   popular,
 }) => {
+  const router = useRouter();
+
   return (
     <>
       <div
@@ -48,7 +51,9 @@ const OrderWidget: React.FC<widgetProps> = ({
           {price} Ft<span className="text-sm font-medium">/{unit}</span>
         </p>
 
-        <PrimaryButton label="Megrendelés" buttonClass="my-5" />
+        <PrimaryButton label="Megrendelés" buttonClass="my-5" callback={()=>{
+          router.push(`/order?title=${encodeURIComponent(title)}`);
+        }} />
 
         {highlights.split("/").map((highlight, index) => (
           <div
@@ -65,3 +70,7 @@ const OrderWidget: React.FC<widgetProps> = ({
 };
 
 export default OrderWidget;
+function userRouter() {
+  throw new Error("Function not implemented.");
+}
+

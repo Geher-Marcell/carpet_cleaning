@@ -8,9 +8,11 @@ import { useEffect, useState } from "react";
 import SmallButton from "../component/buttons/smallButton";
 import { ServiceProps } from "../component/props/serviceProps";
 import DynamicFAIcon from "../component/utils/DynamicIcon";
+import { useSearchParams } from "next/navigation";
 
-export default function OrderPage() {
+const OrderPage = () => {
   const [services, setServices] = useState<ServiceProps[]>([]);
+  const selectedServiceTitle = useSearchParams().get("title") || "";
 
   useEffect(() => {
     fetch("/api/services") //GET request
@@ -21,7 +23,7 @@ export default function OrderPage() {
   }, []);
 
   const [openPage, setOpenPage] = useState<number>(0);
-  const [selectedService, setSelectedService] = useState<string>("");
+  const [selectedService, setSelectedService] = useState<string>(selectedServiceTitle);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -42,7 +44,7 @@ export default function OrderPage() {
     title: string,
     description: string,
     price: number,
-    unit: string
+    unit: string,
   ) {
     return (
       <>
@@ -266,7 +268,6 @@ export default function OrderPage() {
             <div className="space-y-4 max-h-160 overflow-y-auto">
               {services.map((service, index) => (
                 <div key={index}>
-                  {/* <p>{service.iconName + "" || "nincs icon"}</p> */}
                   {Card(
                     service.iconName || "faSoap",
                     service.name,
@@ -443,3 +444,5 @@ export default function OrderPage() {
     </div>
   );
 }
+
+export default OrderPage;
