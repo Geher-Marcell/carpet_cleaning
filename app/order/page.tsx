@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PrimaryButton from "../component/buttons/PrimaryButton";
 import Link from "next/link";
 import RadioButton from "../component/buttons/radioButton";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import SmallButton from "../component/buttons/smallButton";
 import { ServiceProps } from "../component/props/serviceProps";
 import DynamicFAIcon from "../component/utils/DynamicIcon";
@@ -13,7 +13,9 @@ import StepperNavbar from "./navbar";
 
 const OrderPage = () => {
 	const [services, setServices] = useState<ServiceProps[]>([]);
-	const selectedServiceTitle = useSearchParams().get("title") || "";
+
+	const searchParams = useSearchParams(); // Call the hook directly in the component
+	const selectedServiceTitle = searchParams.get("title") || ""; // Extract the parameter value
 
 	useEffect(() => {
 		fetch("/api/services") //GET request
@@ -50,7 +52,7 @@ const OrderPage = () => {
 	) {
 		return (
 			<>
-				<div className="bg-gray-700 rounded-lg p-4 flex items-center justify-between gap-4">
+				<div className="bg-gray-700 rounded-lg p-4 flex items-center justify-between gap-2">
 					<div className="w-12 text-center">
 						<DynamicFAIcon exportName={iconName} size="2x" />
 					</div>
@@ -58,22 +60,24 @@ const OrderPage = () => {
 						<h1>{title}</h1>
 						<p className="text-xs text-gray-400">{description}</p>
 					</div>
-					<div className="min-w-fit">
-						{price} Ft<span className="text-gray-400">/{unit}</span>
+					<div className="flex items-center justify-center flex-col md:flex-row gap-3 min-w-fit">
+						<div className="min-w-fit">
+							{price}Ft <span className="text-gray-400">/{unit}</span>
+						</div>
+						<RadioButton
+							label={""}
+							groupName="valamigroup"
+							value={title}
+							checked={selectedService === title}
+							onChange={(value) => {
+								if (selectedService === value) {
+									setSelectedService("");
+									return;
+								}
+								setSelectedService(value);
+							}}
+						/>
 					</div>
-					<RadioButton
-						label={""}
-						groupName="valamigroup"
-						value={title}
-						checked={selectedService === title}
-						onChange={(value) => {
-							if (selectedService === value) {
-								setSelectedService("");
-								return;
-							}
-							setSelectedService(value);
-						}}
-					/>
 				</div>
 			</>
 		);
