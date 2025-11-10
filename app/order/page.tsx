@@ -217,14 +217,15 @@ const OrderPage = () => {
   }
 
   return (
+    //TODO https://reactbits.dev/components/stepper
     <div className="h-dvh w-dvw overflow-x-hidden bg-gray-900">
       {/* NAVIGATION (TOP BAR) */}
-      <nav className="w-dvw bg-gray-800 p-2 py-4 space-y-4">
+      <nav className="w-dvw p-2 py-4 space-y-4 bg-[#07090c]">
         <div className="h-1/3 w-full flex items-center justify-between px-2">
           <Link href={"./"}>
             <FontAwesomeIcon icon={faArrowLeft} className="text-white size-5" />
           </Link>
-          <h1 className="text-xl font-bold">Szolgáltatás Foglalása</h1>
+          <h1 className="text-2xl font-bold">Szolgáltatás Foglalása</h1>
           <div className="size-5" />
         </div>
         <div
