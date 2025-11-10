@@ -11,11 +11,25 @@ import DynamicFAIcon from "../component/utils/DynamicIcon";
 import { useSearchParams } from "next/navigation";
 import StepperNavbar from "./navbar";
 
+// A client-only component to handle search params
+const SearchParamsComponent = ({
+	onParamFetch,
+}: {
+	onParamFetch: (param: string) => void;
+}) => {
+	const searchParams = useSearchParams();
+	const selectedServiceTitle = searchParams.get("title") || "";
+
+	useEffect(() => {
+		onParamFetch(selectedServiceTitle);
+	}, [selectedServiceTitle, onParamFetch]);
+
+	return null; // This component doesn't render anything
+};
+
 const OrderPage = () => {
 	const [services, setServices] = useState<ServiceProps[]>([]);
-
-	const searchParams = useSearchParams(); // Call the hook directly in the component
-	const selectedServiceTitle = searchParams.get("title") || ""; // Extract the parameter value
+	const [selectedService, setSelectedService] = useState<string>("");
 
 	useEffect(() => {
 		fetch("/api/services") //GET request
@@ -26,8 +40,6 @@ const OrderPage = () => {
 	}, []);
 
 	const [openPage, setOpenPage] = useState<number>(0);
-	const [selectedService, setSelectedService] =
-		useState<string>(selectedServiceTitle);
 	const [formData, setFormData] = useState({
 		name: "",
 		phone: "",
@@ -218,6 +230,11 @@ const OrderPage = () => {
 			{/* NAVIGATION (TOP BAR) */}
 
 			<StepperNavbar />
+
+			{/* Suspense boundary for client-side search params */}
+			<Suspense fallback={<div>Loading...</div>}>
+				<SearchParamsComponent onParamFetch={setSelectedService} />
+			</Suspense>
 
 			<main className="h-ful p-5 max-w-200 mx-auto">
 				{/* The first page, service type selection */}
