@@ -72,7 +72,8 @@ export async function POST(request: Request) {
 
 	try {
 		const query =
-			"INSERT INTO orders (customer_name, customer_email, customer_phone, service_type, service_details, scheduled_date, address) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *";
+			"INSERT INTO orders (customer_name, customer_email, customer_phone, service_type, service_details, scheduled_date, address) " +
+			"VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *";
 		const values = [
 			customer.name,
 			customer.email,

@@ -1,11 +1,12 @@
 import PrimaryButton from "@/app/component/buttons/PrimaryButton";
+import { faFire } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons/faCheck";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 type widgetProps = {
   title: string;
-  price: string;
-  description: string[];
+  price: number;
+  highlights: string;
   unit: string;
   popular?: boolean;
 };
@@ -13,7 +14,7 @@ type widgetProps = {
 const OrderWidget: React.FC<widgetProps> = ({
   title,
   price,
-  description,
+  highlights,
   unit,
   popular,
 }) => {
@@ -36,6 +37,7 @@ const OrderWidget: React.FC<widgetProps> = ({
 
         {popular && (
           <p className="text-white text-xs font-bold bg-[#db5d0b] absolute -top-3 right-4 rounded-2xl w-fit p-1 pr-2 pl-2">
+            <FontAwesomeIcon icon={faFire} className="mr-1" />
             NÉPSZERŰ
           </p>
         )}
@@ -43,18 +45,18 @@ const OrderWidget: React.FC<widgetProps> = ({
         <p className="text-xl font-medium mb-2">{title}</p>
 
         <p className="text-4xl font-extrabold">
-          {price} Ft<span className="text-sm">/{unit}</span>
+          {price} Ft<span className="text-sm font-medium">/{unit}</span>
         </p>
 
         <PrimaryButton label="Megrendelés" buttonClass="my-5" />
 
-        {description?.map((item, index) => (
+        {highlights.split("/").map((highlight, index) => (
           <div
             key={index}
             className="flex items-center text-md font-medium my-1"
           >
             <FontAwesomeIcon icon={faCheck} className="text-[#db5d0b] mr-2.5" />
-            <p key={index}>{item}</p>
+            <p>{highlight}</p>
           </div>
         ))}
       </div>
