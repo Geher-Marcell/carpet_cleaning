@@ -1,5 +1,3 @@
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-
 export type ServiceProps = {
   name: string;
   category: string;
@@ -8,4 +6,5 @@ export type ServiceProps = {
   unit: string;
   hot?: boolean;
   iconName?: string;
+  highlights?: string;
 };

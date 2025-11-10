@@ -37,7 +37,13 @@ export default function OrderPage() {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [showErrors, setShowErrors] = useState(false);
 
-  function Card(iconName: string, title: string, description: string) {
+  function Card(
+    iconName: string,
+    title: string,
+    description: string,
+    price: number,
+    unit: string
+  ) {
     return (
       <>
         <div className="bg-gray-700 rounded-lg p-4 flex items-center justify-between gap-4">
@@ -47,6 +53,9 @@ export default function OrderPage() {
           <div className="w-full">
             <h1>{title}</h1>
             <p className="text-xs text-gray-400">{description}</p>
+          </div>
+          <div className="min-w-fit">
+            {price} Ft<span className="text-gray-400">/{unit}</span>
           </div>
           <RadioButton
             label={""}
@@ -261,40 +270,12 @@ export default function OrderPage() {
                   {Card(
                     service.iconName || "faSoap",
                     service.name,
-                    service.description || "N/A"
+                    service.description || "N/A",
+                    service.price || -1,
+                    service.unit || "N/A"
                   )}
                 </div>
               ))}
-              {/* {Card(
-                faSoap,
-                "Autó belső tisztítás",
-                "Teljes belső porszívózás és letörlés."
-              )}
-              {Card(
-                faHands,
-                "Külső Mosás & Viaszolás",
-                "Védő mosás és viasz a fényes felületért."
-              )}
-              {Card(
-                faCar,
-                "Teljes Körű Autómosás",
-                "Átfogó belső és külső tisztítás"
-              )}
-              {Card(
-                faBroom,
-                "Mélyszőnyeg Tisztítás",
-                "Alapos, mély tisztítás a szőnyegeinek."
-              )}
-              {Card(
-                faCircle,
-                "Folteltávolítás",
-                "Makacs foltok hatékony eltávolítása."
-              )}
-              {Card(
-                faPaw,
-                "Kisállat Szag Eltávolítás",
-                "Távolítsa el a kisállat szagokat a szőnyegekből."
-              )} */}
             </div>
             <div
               className={`mt-8 max-w-120 mx-auto ${

@@ -48,17 +48,9 @@ export default function PriceList() {
                   title={service.name || "Unknown Service"}
                   price={service.price || -1}
                   unit={service.unit || "unit"}
-                  description={
-                    service.description || "No description available"
-                  }
+                  highlights={service.highlights || "No highlights available"}
                   popular={service.hot || false}
                 />
-                // <div key={idx}>
-                //   {service.name}
-                //   <br />
-                //   {service.price}/{service.unit} <br />
-                //   {service.description}
-                // </div>
               ))}
             </div>
           </div>

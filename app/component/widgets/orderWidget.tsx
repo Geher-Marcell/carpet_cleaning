@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 type widgetProps = {
   title: string;
   price: number;
-  description: string;
+  highlights: string;
   unit: string;
   popular?: boolean;
 };
@@ -14,7 +14,7 @@ type widgetProps = {
 const OrderWidget: React.FC<widgetProps> = ({
   title,
   price,
-  description,
+  highlights,
   unit,
   popular,
 }) => {
@@ -50,10 +50,15 @@ const OrderWidget: React.FC<widgetProps> = ({
 
         <PrimaryButton label="Megrendelés" buttonClass="my-5" />
 
-        <div className="flex items-center text-md font-medium my-1">
-          <FontAwesomeIcon icon={faCheck} className="text-[#db5d0b] mr-2.5" />
-          <p>{description}</p>
-        </div>
+        {highlights.split("/").map((highlight, index) => (
+          <div
+            key={index}
+            className="flex items-center text-md font-medium my-1"
+          >
+            <FontAwesomeIcon icon={faCheck} className="text-[#db5d0b] mr-2.5" />
+            <p>{highlight}</p>
+          </div>
+        ))}
       </div>
     </>
   );

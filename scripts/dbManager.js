@@ -13,6 +13,7 @@ const makeQuery = `
         name VARCHAR(100) NOT NULL,
         category INTEGER NOT NULL,
         description TEXT,
+        highlights TEXT,
         iconName VARCHAR(100) DEFAULT 'faSoap',
         price INTEGER NOT NULL,
         unit VARCHAR(10) DEFAULT 'm2',
@@ -41,25 +42,16 @@ const makeQuery = `
         ('autó'),
         ('egyéb');
 
-    INSERT INTO services (name, description, price, unit, category, iconName) VALUES
-        ('Mélyszőnyegtisztítás', 'Professzionális mélytisztítás a szőnyegei számára.', 2500, 'm2', 1, 'faBroom'),
-        ('Folttisztítás', 'Makacs foltok eltávolítása szőnyegeiről.', 3000, 'folt', 1, 'faDroplet'),
-        ('Kisállat Szageltávolítás', 'Hatékony szageltávolítás kisállat tulajdonosok számára.', 4000, 'm2', 1, 'faPaw'),
-        ('Belső Részletezés', 'Autója belső terének alapos tisztítása.', 20000, 'autó', 2, 'faCar'),
-        ('Külső Mosás', 'Teljes körű külső autómosás és védő viaszolás.', 15000, 'autó', 2, 'faHandsWash'),
-        ('Teljes Körű Autóápolás', 'Belső és külső tisztítás egy csomagban.', 30000, 'autó', 2, 'faCarSide');
+    INSERT INTO services (name, description, price, unit, category, iconName, highlights) VALUES
+        ('Mélyszőnyegtisztítás', 'Professzionális mélytisztítás a szőnyegei számára.', 2500, 'm2', 1, 'faBroom', 'Gyors száradás/Környezetbarát tisztítószerek/Alga és gomba elleni védelem'),
+        ('Folttisztítás', 'Makacs foltok eltávolítása szőnyegeiről.', 3000, 'folt', 1, 'faDroplet', 'Borfoltok és más szennyeződések/Eredeti szín visszaállítása'),
+        ('Kisállat Szageltávolítás', 'Hatékony szageltávolítás kisállat tulajdonosok számára.', 4000, 'm2', 1, 'faPaw', 'Kisállatszőr eltávolítás/Friss illat'),
+        ('Belső Részletezés', 'Autója belső terének alapos tisztítása.', 20000, 'autó', 2, 'faCar', 'Belső porszívózás/Ülések tisztítása'),
+        ('Külső Mosás', 'Teljes körű külső autómosás és védő viaszolás.', 15000, 'autó', 2, 'faHandsWash', 'Kézi mosás/Védő viasz'),
+        ('Teljes Körű Autóápolás', 'Belső és külső tisztítás egy csomagban.', 30000, 'autó', 2, 'faCarSide', 'Teljes körű szolgáltatás');
 
 	UPDATE services SET hot = TRUE WHERE id = 1 OR id = 6;
 `;
-
-// ('Standard Szoba', 'Alap takarítási szolgáltatás szobák számára.', 15000, 'szoba', 1, faSpap),
-//         ('Lépcsőház', 'Mélytisztítás és kézi részletezés lépcsősorok számára.', 9000, 'lépcsősor', 1, faHands),
-//         ('Kárpittisztítás', 'Kanapé és fotel tisztítás szövetvédelemmel.', 24000, 'darab', 1, faCouch),
-//         ('Speciális Kezelések', 'Kisállatszag eltávolítás és allergén kezelés.', 12000, 'kezelés', 1, faStar),
-//         ('Külső Mosás', 'Kézi mosás, viaszolás és gumiabroncs ápolás.', 12000, 'autó', 2, faCar),
-//         ('Belső Részletezés', 'Porszívózás, portörlés és ablaktisztítás.', 18000, 'autó', 2, faCar),
-//         ('Teljes Körű Szolgáltatás', 'Külső mosás és belső részletezés.', 27000, 'autó', 2, faCar),
-//         ('Kiegészítők', 'Motortér tisztítás és fényszóró felújítás.', 6000, 'kiegészítő', 2, faWrench),;
 
 const dropQuery = db.usingSqlite
   ? `SELECT name FROM sqlite_master WHERE type = 'table' AND name NOT LIKE 'sqlite_%';`
