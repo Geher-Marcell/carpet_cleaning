@@ -32,19 +32,15 @@ const RadioButton: React.FC<RadioButtonProps> = ({
 					if (onChange) {
 						onChange(value);
 					}
-				}}
-			>
+				}}>
 				<motion.div
 					initial={{ scale: 1 }}
 					animate={{
 						scale: checked ? 1 : 0,
-						backgroundColor: checked
-							? "rgba(251, 44, 54, 1)"
-							: "rgba(251, 44, 54, 0)",
+						backgroundColor: checked ? "#db5d0b" : "#db5d0b00",
 					}}
 					transition={{ ease: "easeOut", duration: 0.2 }}
-					className={`absolute inset-0 rounded-full`}
-				>
+					className={`absolute inset-0 rounded-full`}>
 					{" "}
 					<FontAwesomeIcon
 						icon={faCheck}

@@ -2,22 +2,35 @@
 
 @import "tailwindcss";
 
+@theme {
+	--color-navbarbg: oklch(0.1386 0.0077 255.5);
+	--color-pagebg: oklch(0.1763 0.014 258.36);
+
+	/* oklch(0.6293 0.1759 45.16) orange */
+	--color-primary: oklch(0.5644 0.2251 28.61);
+
+	/* oklch(0.2202 0.0157 256.82) */
+	--color-widgetbg: oklch(0.6702 0.1801 144.93);
+	/* oklch(0.3691 0.0307 259.73) */
+	--color-widgetoutline: oklch(0.5849 0.2146 0);
+}
+
 html {
-  scroll-behavior: smooth !important;
+	scroll-behavior: smooth !important;
 }
 
 body {
-  font-family: "Rubik", sans-serif;
-  background-color: #0d1117;
-  color: white;
+	font-family: "Rubik", sans-serif;
+	background-color: var(--color-pagebg);
+	color: white;
 }
 
 #services {
-  scroll-margin-top: 30px; /* Adjust to match your navbar height */
+	scroll-margin-top: 30px; /* Adjust to match your navbar height */
 }
 
 #pricelist {
-  scroll-margin-top: 40px; /* Adjust to match your navbar height */
+	scroll-margin-top: 40px; /* Adjust to match your navbar height */
 }
 
 /*

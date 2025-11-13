@@ -8,6 +8,7 @@ import { ServiceProps } from "../component/props/serviceProps";
 import DynamicFAIcon from "../component/utils/DynamicIcon";
 import { useSearchParams } from "next/navigation";
 import StepperNavbar from "./navbar";
+import TextInput from "../component/inputs/textInput";
 
 // A client-only component to handle search params
 const SearchParamsComponent = ({
@@ -22,7 +23,7 @@ const SearchParamsComponent = ({
 		onParamFetch(selectedServiceTitle);
 	}, [selectedServiceTitle, onParamFetch]);
 
-	return null; // This component doesn't render anything
+	return null;
 };
 
 const OrderPage = () => {
@@ -35,9 +36,7 @@ const OrderPage = () => {
 	} | null>(null);
 
 	const HandleStepForward = () => {
-		console.log("Handling step forward");
 		if (stepperNavRef.current) {
-			console.log("Adding position in navbar");
 			stepperNavRef.current.addPos();
 		}
 		setOpenPage((prev) => prev + 1);
@@ -72,7 +71,6 @@ const OrderPage = () => {
 		address: "",
 	});
 	const [errors, setErrors] = useState<{ [key: string]: string }>({});
-	const [showErrors, setShowErrors] = useState(false);
 
 	function Card(
 		iconName: string,
@@ -117,6 +115,8 @@ const OrderPage = () => {
 	function ValidateForm(data: typeof formData) {
 		const errors: { [key: string]: string } = {};
 
+		console.log(data);
+
 		if (data.name.trim() === "" || /[<>\/\\{}[\]~`]/.test(data.name)) {
 			errors.name = "Érvénytelen név";
 		}
@@ -156,9 +156,9 @@ const OrderPage = () => {
 	}
 
 	function HandleFormFill(): boolean {
+		setErrors({});
 		const validationErrors = ValidateForm(formData);
 		setErrors(validationErrors);
-		setShowErrors(true);
 
 		if (Object.keys(validationErrors).length > 0) {
 			console.log("Validation errors:", validationErrors);
@@ -208,41 +208,6 @@ const OrderPage = () => {
 		}
 	}
 
-	function InputGroup(
-		label: string,
-		name: keyof typeof formData,
-		type: string,
-		placeholder?: string,
-		maxLength?: number
-	) {
-		const error = showErrors && errors[name];
-
-		return (
-			<div className="w-full">
-				<label
-					className={`block text-sm text-left pl-1 font-medium mb-1 ${
-						error ? "text-red-500" : "text-white"
-					}`}
-				>
-					{label}
-					{error && <span className="ml-2 text-xs">{error}</span>}
-				</label>
-				<input
-					required
-					type={type}
-					name={name}
-					value={formData[name] || ""}
-					onChange={HandleInputChange}
-					className={`w-full p-2 rounded-lg bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-						error ? "border-red-500 border-2" : "text-white"
-					}`}
-					{...(placeholder ? { placeholder: placeholder } : {})}
-					{...(maxLength ? { maxLength: maxLength } : {})}
-				/>
-			</div>
-		);
-	}
-
 	return (
 		<div className="h-dvh w-dvw overflow-x-hidden">
 			{/* NAVIGATION (TOP BAR) */}
@@ -286,8 +251,7 @@ const OrderPage = () => {
 						<div
 							className={`mt-8 max-w-120 mx-auto ${
 								selectedService === "" ? "pointer-events-none opacity-50" : ""
-							}`}
-						>
+							}`}>
 							<PrimaryButton
 								label="Következő"
 								callback={() => {
@@ -318,71 +282,97 @@ const OrderPage = () => {
 							/>
 						</p>
 						<div className="space-y-4 *:mx-auto">
-							<div className="*:inline-block text-center space-x-4 space-y-4">
-								<div className="w-full sm:w-74">
-									{InputGroup("Név", "name", "text", "Teljes név", 50)}
-								</div>
-								<div className="w-full sm:w-56">
-									{InputGroup(
-										"Telefonszám",
-										"phone",
-										"text",
-										"Telefonszám",
-										12
-									)}
-								</div>
+							<div className="*:inline-block text-center space-x-4 space-y-4 sm:space-y-0">
+								<TextInput
+									compClass="w-full sm:w-74"
+									label="Teljes név"
+									name="name"
+									inpType="text"
+									placeholder="Név"
+									maxLength={50}
+									error={errors["name"]}
+									onChange={(e) => HandleInputChange(e)}
+								/>
+								<TextInput
+									compClass="w-full sm:w-56"
+									label="Telefonszám"
+									name="phone"
+									inpType="text"
+									placeholder="Telefonszám"
+									maxLength={12}
+									error={errors["phone"]}
+									onChange={(e) => HandleInputChange(e)}
+								/>
 							</div>
-							<div className="w-full sm:w-134">
-								{InputGroup("E-Mail", "email", "email", "E-Mail cím", 50)}
+							<TextInput
+								compClass="w-full sm:w-134"
+								label="E-Mail"
+								name="email"
+								inpType="email"
+								placeholder="E-Mail cím"
+								maxLength={50}
+								error={errors["email"]}
+								onChange={(e) => HandleInputChange(e)}
+							/>
+							<hr />
+							<div className="*:inline-block text-center space-x-4 space-y-4 sm:space-y-0">
+								<TextInput
+									compClass="w-full sm:w-65"
+									label="Dátum"
+									name="date"
+									inpType="date"
+									error={errors["date"]}
+									onChange={(e) => HandleInputChange(e)}
+								/>
+								<TextInput
+									compClass="w-full sm:w-65"
+									label="Irányítószám"
+									name="postalCode"
+									inpType="number"
+									maxLength={4}
+									error={errors["postalCode"]}
+									onChange={(e) => HandleInputChange(e)}
+								/>
+							</div>
+							<TextInput
+								compClass="w-full sm:w-134"
+								label="Település"
+								name="city"
+								inpType="text"
+								error={errors["city"]}
+								onChange={(e) => HandleInputChange(e)}
+							/>
+							<div className="*:inline-block text-center space-x-4 space-y-4 sm:space-y-0">
+								<TextInput
+									compClass="w-full sm:w-90"
+									label="Utca és Házszám"
+									name="street"
+									inpType="text"
+									error={errors["street"]}
+									onChange={(e) => HandleInputChange(e)}
+								/>
+								<TextInput
+									compClass="w-full sm:w-40"
+									label="Emelet / Ajtó"
+									name="floor"
+									inpType="text"
+									error={errors["floor"]}
+									onChange={(e) => HandleInputChange(e)}
+								/>
 							</div>
 							<hr />
-							<div className="*:inline-block text-center space-x-4 space-y-4">
-								<div className="w-full sm:w-65">
-									{InputGroup("Dátum", "date", "date", undefined, undefined)}
-								</div>
-								<div className="w-full sm:w-65">
-									{InputGroup("Irányítószám", "postalCode", "text", "", 4)}
-								</div>
-							</div>
 							<div className="w-full sm:w-134">
-								{InputGroup("Település", "city", "text", undefined, undefined)}
-							</div>
-							<div className="*:inline-block text-center space-x-4 space-y-4">
-								<div className="w-full sm:w-90">
-									{InputGroup(
-										"Utca és Házszám",
-										"street",
-										"text",
-										undefined,
-										undefined
-									)}
-								</div>
-								<div className="w-full sm:w-40">
-									{InputGroup(
-										"Emelet / Ajtó",
-										"floor",
-										"text",
-										undefined,
-										undefined
-									)}
-								</div>
-							</div>
-							<hr />
-							<div className="w-full sm:w-134">
-								<div className="w-full">
-									<label className="block text-sm text-left pl-1 font-medium text-white mb-1">
-										Megjegyzés
-									</label>
-									<textarea
-										className="w-full p-2 rounded-lg bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-										placeholder="Ide írhat speciális kéréseket"
-										rows={4}
-										maxLength={230}
-										name="notes"
-										value={formData.notes}
-										onChange={HandleInputChange}
-									></textarea>
-								</div>
+								<label className="block text-sm text-left pl-1 font-medium text-neutral-400 mb-1">
+									Megjegyzés
+								</label>
+								<textarea
+									className="w-full p-2 rounded-lg border border-[#364050] bg-[#161b22] text-white focus:outline-none focus:ring-2 focus:ring-orange-800 resize-none"
+									placeholder="Ide írhat speciális kéréseket"
+									rows={4}
+									maxLength={230}
+									name="notes"
+									value={formData.notes}
+									onChange={HandleInputChange}></textarea>
 							</div>
 						</div>
 						<div className={`mt-8 max-w-120 mx-auto `}>

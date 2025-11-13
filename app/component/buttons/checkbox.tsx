@@ -30,8 +30,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
 						onChange(!isChecked);
 					}
 					setIsChecked(!isChecked);
-				}}
-			>
+				}}>
 				<motion.div
 					initial={{ scale: 1, top: 0, right: 0 }}
 					animate={{
@@ -43,8 +42,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
 							: "rgba(251, 44, 54, 0)",
 					}}
 					transition={{ ease: "easeOut", duration: 0.2 }}
-					className={`absolute inset-0 rounded-md`}
-				>
+					className={`absolute inset-0 rounded-md`}>
 					{" "}
 					<FontAwesomeIcon
 						icon={isChecked ? faCheck : faTimes}

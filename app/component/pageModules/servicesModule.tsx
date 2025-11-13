@@ -34,8 +34,7 @@ export default function Services() {
 		<>
 			<div
 				className="flex flex-col pt-10 gap-10 items-center justify-center
-			 		*:flex *:flex-col *:justify-center *:items-center *:gap-4"
-			>
+			 		*:flex *:flex-col *:justify-center *:items-center *:gap-4">
 				{Object.keys(services).map((group, index) => (
 					<div key={index}>
 						<h3 className="text-2xl text-neutral-200 font-semibold">
@@ -56,10 +55,7 @@ export default function Services() {
 					</div>
 				))}
 				<div className="w-70 pb-10">
-					<PrimaryButton
-						label="Kérjen ingyenes árajánlatot"
-						colorClass="bg-[#3b82f6]"
-					/>
+					<PrimaryButton label="Kérjen ingyenes árajánlatot" />
 				</div>
 			</div>
 		</>
