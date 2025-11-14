@@ -2,21 +2,6 @@
 
 @import "tailwindcss";
 
-/**
- * UNIFIED COLOR PALETTE
- * =====================
- * This color system provides a consistent design language across the entire website.
- * 
- * Usage in Tailwind classes:
- * - Backgrounds: bg-navbarbg, bg-pagebg, bg-widgetbg, bg-primary, bg-secondary
- * - Text: text-primary, text-secondary, text-muted, text-white
- * - Borders: border-border-primary, border-border-secondary
- * - Status: border-error, text-error, bg-success
- * 
- * Usage in inline styles:
- * - var(--color-primary), var(--color-widgetbg), etc.
- */
-
 @theme {
 	/* Background Colors */
 	--color-navbarbg: #07090c;

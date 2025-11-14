@@ -81,17 +81,17 @@ const OrderPage = () => {
 	) {
 		return (
 			<>
-				<div className="text-white bg-widgetbg rounded-xl outline-1 outline-border-primary p-4 flex items-center justify-between gap-2">
+				<div className="text-text-white bg-widgetbg rounded-xl outline-1 outline-border-primary p-4 flex items-center justify-between gap-2">
 					<div className="w-12 text-center">
 						<DynamicFAIcon exportName={iconName} size="2x" />
 					</div>
 					<div className="w-full">
 						<h1>{title}</h1>
-						<p className="text-xs text-gray-400">{description}</p>
+						<p className="text-xs text-text-muted">{description}</p>
 					</div>
 					<div className="flex items-center justify-center flex-col md:flex-row gap-3 min-w-fit">
 						<div className="min-w-fit">
-							{price}Ft <span className="text-gray-400">/{unit}</span>
+							{price}Ft <span className="text-text-muted">/{unit}</span>
 						</div>
 						<RadioButton
 							label={""}
@@ -223,10 +223,10 @@ const OrderPage = () => {
 				{/* The first page, service type selection */}
 				{openPage === 0 && (
 					<div>
-						<p className="text-white text-lg font-bold mb-5">
+						<p className="text-text-white text-lg font-bold mb-5">
 							Milyen szolgáltatásra van szüksége?{" "}
 							{selectedService === "" ? (
-								<span className="text-sm text-red-500 md:ml-2 block md:inline">
+								<span className="text-sm text-error md:ml-2 block md:inline">
 									*Kérem válasszon egy opciót!
 								</span>
 							) : (
@@ -270,7 +270,7 @@ const OrderPage = () => {
 
 				{openPage === 1 && (
 					<div>
-						<p className="text-white text-lg font-bold mb-5">
+						<p className="text-text-white text-lg font-bold mb-5">
 							Személyes információk
 							<SmallButton
 								label={"Előző"}
@@ -363,11 +363,11 @@ const OrderPage = () => {
 							</div>
 							<hr />
 							<div className="w-full sm:w-134">
-								<label className="block text-sm text-left pl-1 font-medium text-neutral-400 mb-1">
+								<label className="block text-sm text-left pl-1 font-medium text-text-secondary mb-1">
 									Megjegyzés
 								</label>
 								<textarea
-									className="w-full p-2 rounded-lg border border-border-primary bg-widgetbg text-white focus:outline-none focus:ring-2 focus:ring-primary-dark resize-none"
+									className="w-full p-2 rounded-lg border border-border-primary bg-widgetbg text-text-white focus:outline-none focus:ring-2 focus:ring-primary-dark resize-none"
 									placeholder="Ide írhat speciális kéréseket"
 									rows={4}
 									maxLength={230}
@@ -393,7 +393,7 @@ const OrderPage = () => {
 				{/* The third page, summary and confirmation */}
 				{openPage === 2 && (
 					<div>
-						<p className="text-white text-lg font-bold mb-5">
+						<p className="text-text-white text-lg font-bold mb-5">
 							Rendelés Összegzés
 							<SmallButton
 								label={"Előző"}

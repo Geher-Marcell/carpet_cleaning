@@ -28,7 +28,7 @@ const TextInput: React.FC<
 				className={`${
 					labelClass ?? ""
 				} cursor-text text-sm font-medium text-left block pl-1 ${
-					error ? "text-red-500" : "text-neutral-400"
+					error ? "text-error" : "text-text-secondary"
 				}`}
 			>
 				{label}
@@ -43,7 +43,7 @@ const TextInput: React.FC<
 				placeholder={placeholder ?? ""}
 				className={`${inputClass ?? ""} ${
 					error ? "border-error" : "border-border-primary"
-				} w-full rounded-md border bg-widgetbg px-3 py-2 text-white focus:ring-2 focus:ring-primary-dark focus:outline-none`}
+				} w-full rounded-md border bg-widgetbg px-3 py-2 text-text-white focus:ring-2 focus:ring-primary-dark focus:outline-none`}
 				onChange={onChange}
 			/>
 		</div>

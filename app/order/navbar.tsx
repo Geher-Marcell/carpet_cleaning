@@ -99,7 +99,10 @@ const StepperNavbar = forwardRef((props, ref) => {
 			<nav className="w-dvw p-2 py-4 space-y-4 bg-navbarbg">
 				<div className="h-1/3 w-full flex items-center justify-between px-2">
 					<Link href={"./"}>
-						<FontAwesomeIcon icon={faArrowLeft} className="text-white size-5" />
+						<FontAwesomeIcon
+							icon={faArrowLeft}
+							className="text-text-white size-5"
+						/>
 					</Link>
 					<h1 className="text-2xl font-bold">Szolgáltatás Foglalása</h1>
 					<div className="size-5" />

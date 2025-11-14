@@ -11,7 +11,7 @@ export default function ReviewsModule() {
 				content={
 					<>
 						<p className="italic mb-2 font-medium">{content}</p>
-						<p className="text-gray-400 font-semibold">- {writer}</p>
+						<p className="text-text-secondary font-semibold">- {writer}</p>
 					</>
 				}
 			/>

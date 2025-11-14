@@ -122,9 +122,9 @@ const Navbar: React.FC<NavbarProps> = ({ links, currentPath }) => {
 							<Link
 								key={link.href}
 								href={link.href}
-								className={`block w-full px-4 py-2 text-lg rounded hover:bg-neutral-700 ${
+								className={`block w-full px-4 py-2 text-lg rounded hover:bg-widgetbg-hover ${
 									currentPath === link.href
-										? "bg-neutral-700 font-bold"
+										? "bg-widgetbg-active font-bold"
 										: "font-medium"
 								}`}
 								onClick={() => setIsOpen(false)}

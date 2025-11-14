@@ -18,10 +18,10 @@ const Checkbox: React.FC<CheckboxProps> = ({
 }) => {
 	const [isChecked, setIsChecked] = React.useState(checked);
 	return (
-		<div className="flex items-center gap-x-2 text-white">
+		<div className="flex items-center gap-x-2 text-text-white">
 			<motion.button
 				id={label}
-				className={`relative inline-flex h-6 w-6 cursor-pointer items-center rounded-md bg-neutral-500`}
+				className={`relative inline-flex h-6 w-6 cursor-pointer items-center rounded-md bg-widgetbg-active`}
 				whileHover={{ scale: 1.05 }}
 				whileTap={{ scale: 0.95 }}
 				transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -48,7 +48,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
 					{" "}
 					<FontAwesomeIcon
 						icon={isChecked ? faCheck : faTimes}
-						className={`z-10 m-auto text-white ${
+						className={`z-10 m-auto text-text-white ${
 							isChecked ? "opacity-100" : "opacity-0"
 						} `}
 					/>

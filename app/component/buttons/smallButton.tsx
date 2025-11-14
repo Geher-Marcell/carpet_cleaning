@@ -20,8 +20,8 @@ const SmallButton: React.FC<
 				boxShadow: "0 4px 14px 0 var(--color-shadow)",
 			}}
 			whileTap={{ scale: 0.99 }}
-			transition={{ type: "spring", stiffness: 400, damping: 14 }}
-			className={`${buttonClass} flex cursor-pointer items-center justify-center rounded-md bg-neutral-700 px-3 py-3 text-sm`}
+			transition={{ type: "spring", stiffness: 200, damping: 20 }}
+			className={`${buttonClass} flex cursor-pointer items-center justify-center rounded-md bg-widgetbg-active px-3 py-3 text-sm`}
 			onClick={(e) => {
 				if (disableAfterClick) {
 					(e.target as HTMLButtonElement).disabled = true;

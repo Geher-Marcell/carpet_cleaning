@@ -57,14 +57,14 @@ export default function Home() {
 						</div>
 					</div>
 				</div>
-				<hr className="text-gray-800" />
+				<hr className="text-border-muted" />
 
 				<div id="services" className="pt-10">
 					<h1 className="text-4xl text-center font-bold">Szolgáltatásaink</h1>
 				</div>
 				<Services />
 
-				<hr className="text-gray-800" />
+				<hr className="text-border-muted" />
 
 				<div id="whyus" className="pt-10">
 					<h1 className="text-3xl text-center font-semibold">
@@ -73,21 +73,21 @@ export default function Home() {
 				</div>
 				<WhyUsModule />
 
-				<hr className="text-gray-800" />
+				<hr className="text-border-muted" />
 
 				<div id="pricelist" className="pt-10">
 					<h1 className="text-4xl text-center font-bold">Áraink</h1>
 				</div>
 				<PriceList />
 
-				<hr className="text-gray-800" />
+				<hr className="text-border-muted" />
 
 				<div id="reviews" className="pt-10">
 					<h1 className="text-4xl text-center font-bold">Szolgáltatásaink</h1>
 				</div>
 				<ReviewsModule />
 
-				<hr className="text-gray-800" />
+				<hr className="text-border-muted" />
 
 				<footer>
 					<div className="bg-widgetbg p-5 text-center">
@@ -99,7 +99,7 @@ export default function Home() {
 							<div className="font-medium hover:cursor-pointer">Kapcsolat</div>
 						</div>
 
-						<p className="mt-3 text-gray-500">
+						<p className="mt-3 text-text-muted">
 							© 2025 CleanCo. Minden jog fenntartva.
 						</p>
 					</div>
