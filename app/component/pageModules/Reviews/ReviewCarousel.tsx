@@ -3,8 +3,8 @@
 import { useEffect, useState, useRef, JSX } from "react";
 import { motion, PanInfo, useMotionValue } from "motion/react";
 import type { Transition } from "motion";
-import ReviewCard from "../pageModules/Reviews/ReviewCard";
-import Reviews from "../utils/reviews";
+import Reviews from "../../utils/reviews";
+import ReviewCard from "./ReviewCard";
 
 export interface CarouselProps {
 	items?: typeof Reviews;

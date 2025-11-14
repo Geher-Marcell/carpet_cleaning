@@ -1,7 +1,7 @@
 import BaseWidget from "../baseWidget";
-import Carousel from "../carousel/Carousel";
 import Reviews from "../utils/reviews";
 import ReviewCard from "./Reviews/ReviewCard";
+import Carousel from "./Reviews/ReviewCarousel";
 
 export default function ReviewsModule() {
 	const Card = (writer: string, content: string) => {

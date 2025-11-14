@@ -1,18 +1,13 @@
 "use client";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PriceList from "./component/pageModules/pricesModule";
 import PrimaryButton from "./component/buttons/PrimaryButton";
 import Services from "./component/pageModules/servicesModule";
-import {
-	faClock,
-	faLeaf,
-	faPerson,
-	faThumbsUp,
-} from "@fortawesome/free-solid-svg-icons";
 import NavbarWrapper from "./Navbar/navbarWrapper";
-import Carousel from "./component/carousel/Carousel";
 import ReviewsModule from "./component/pageModules/reviewsModule";
+import BaseWidget from "./component/baseWidget";
+import DynamicFAIcon from "./component/utils/DynamicIcon";
+import WhyUsModule from "./component/pageModules/whyusModule";
 
 export default function Home() {
 	// const [message, setMessage] = useState("");
@@ -70,45 +65,13 @@ export default function Home() {
 				<Services />
 
 				<hr className="text-gray-800" />
-				<div className="p-10 space-y-10">
-					<h1 className="text-3xl font-semibold flex justify-center">
+
+				<div id="whyus" className="pt-10">
+					<h1 className="text-3xl text-center font-semibold">
 						Miért válasszon minket?
 					</h1>
-					<div className="flex justify-center flex-col items-center **:text-center">
-						<div className="flex flex-wrap gap-5 justify-center">
-							<div className="flex items-center justify-center flex-col w-40 h-40 rounded-xl bg-widgetbg outline-1 outline-widgetoutline">
-								<div className="bg-primary/20 w-10 h-10 flex justify-center items-center rounded-4xl">
-									<FontAwesomeIcon icon={faLeaf} className="text-primary" />
-								</div>
-								<p className="font-medium m-4.5">Környezetbarát</p>
-							</div>
-							<div className="flex items-center justify-center flex-col w-40 h-40 rounded-xl bg-widgetbg outline-1 outline-widgetoutline">
-								<div className="bg-primary/20 w-10 h-10 flex justify-center items-center rounded-4xl">
-									<FontAwesomeIcon icon={faPerson} className="text-primary" />
-								</div>
-								<p className="font-medium mt-3">
-									Szakértő<br></br> technikusok
-								</p>
-							</div>
-							<div className="flex items-center justify-center flex-col w-40 h-40 rounded-xl bg-widgetbg outline-1 outline-widgetoutline">
-								<div className="bg-primary/20 w-10 h-10 flex justify-center items-center rounded-4xl">
-									<FontAwesomeIcon icon={faThumbsUp} className="text-primary" />
-								</div>
-								<p className="font-medium mt-3">
-									Garantált<br></br> elégedettség
-								</p>
-							</div>
-							<div className="flex items-center justify-center flex-col w-40 h-40 rounded-xl bg-widgetbg outline-1 outline-widgetoutline">
-								<div className="bg-primary/20 w-10 h-10 flex justify-center items-center rounded-4xl">
-									<FontAwesomeIcon icon={faClock} className="text-primary" />
-								</div>
-								<p className="font-medium mt-3">
-									Rugalmas<br></br> időbeosztás
-								</p>
-							</div>
-						</div>
-					</div>
 				</div>
+				<WhyUsModule />
 
 				<hr className="text-gray-800" />
 
