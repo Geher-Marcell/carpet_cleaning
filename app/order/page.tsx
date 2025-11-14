@@ -81,7 +81,7 @@ const OrderPage = () => {
 	) {
 		return (
 			<>
-				<div className="text-white bg-[#161b22] rounded-xl outline-1 outline-[#364050] p-4 flex items-center justify-between gap-2">
+				<div className="text-white bg-widgetbg rounded-xl outline-1 outline-border-primary p-4 flex items-center justify-between gap-2">
 					<div className="w-12 text-center">
 						<DynamicFAIcon exportName={iconName} size="2x" />
 					</div>
@@ -251,7 +251,8 @@ const OrderPage = () => {
 						<div
 							className={`mt-8 max-w-120 mx-auto ${
 								selectedService === "" ? "pointer-events-none opacity-50" : ""
-							}`}>
+							}`}
+						>
 							<PrimaryButton
 								label="Következő"
 								callback={() => {
@@ -366,13 +367,14 @@ const OrderPage = () => {
 									Megjegyzés
 								</label>
 								<textarea
-									className="w-full p-2 rounded-lg border border-[#364050] bg-[#161b22] text-white focus:outline-none focus:ring-2 focus:ring-orange-800 resize-none"
+									className="w-full p-2 rounded-lg border border-border-primary bg-widgetbg text-white focus:outline-none focus:ring-2 focus:ring-primary-dark resize-none"
 									placeholder="Ide írhat speciális kéréseket"
 									rows={4}
 									maxLength={230}
 									name="notes"
 									value={formData.notes}
-									onChange={HandleInputChange}></textarea>
+									onChange={HandleInputChange}
+								></textarea>
 							</div>
 						</div>
 						<div className={`mt-8 max-w-120 mx-auto `}>

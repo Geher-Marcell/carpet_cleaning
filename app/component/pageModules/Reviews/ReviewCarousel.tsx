@@ -201,8 +201,8 @@ export default function Carousel({
 							key={index}
 							className={`h-2 w-2 rounded-full cursor-pointer transition-colors duration-150 ${
 								currentIndex % items.length === index
-									? "bg-[#808080]"
-									: "bg-[rgba(110,110,110,0.4)]"
+									? "bg-gray-light"
+									: "bg-gray-medium"
 							}`}
 							animate={{
 								scale: currentIndex % items.length === index ? 1.2 : 1,

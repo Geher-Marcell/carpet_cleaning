@@ -46,27 +46,31 @@ const Navbar: React.FC<NavbarProps> = ({ links, currentPath }) => {
 					{!isLargerThanMd && (
 						<motion.button
 							onClick={() => setIsOpen(!opened)}
-							className="space-y-2 *:w-7 *:h-0.5 *:bg-white p-2">
+							className="space-y-2 *:w-7 *:h-0.5 *:bg-white p-2"
+						>
 							<motion.div
 								className="origin-right"
 								animate={{ rotate: opened ? -45 : 0 }}
 								transition={{
 									ease: "easeInOut",
 									duration: 0.3,
-								}}></motion.div>
+								}}
+							></motion.div>
 							<motion.div
 								animate={{ opacity: opened ? 0 : 1 }}
 								transition={{
 									ease: "easeInOut",
 									duration: 0.3,
-								}}></motion.div>
+								}}
+							></motion.div>
 							<motion.div
 								className="origin-right"
 								animate={{ rotate: opened ? 45 : 0 }}
 								transition={{
 									ease: "easeInOut",
 									duration: 0.3,
-								}}></motion.div>
+								}}
+							></motion.div>
 						</motion.button>
 					)}
 
@@ -79,18 +83,19 @@ const Navbar: React.FC<NavbarProps> = ({ links, currentPath }) => {
 									animate={{
 										backgroundColor:
 											currentPath === link.href
-												? "rgb(55, 65, 81)" // bg-neutral-700
+												? "var(--color-widgetbg-active)"
 												: "rgba(0, 0, 0, 0)", // transparent
 										color:
 											currentPath === link.href
-												? "rgb(255, 255, 255)" // white
-												: "rgb(255, 255, 255)", // gray-300    rgb(209, 213, 219) // cigany nem mukodik szoval most mindig feher lesz.
+												? "var(--color-text-white)"
+												: "var(--color-text-primary)",
 									}}
 									transition={{
 										ease: "easeInOut",
 										duration: 0.2,
 									}}
-									className={`px-4 py-2 text-lg rounded`}>
+									className={`px-4 py-2 text-lg rounded`}
+								>
 									<a href={link.href}>
 										<span className="mr-2">
 											<FontAwesomeIcon icon={link.icon} />
@@ -111,7 +116,8 @@ const Navbar: React.FC<NavbarProps> = ({ links, currentPath }) => {
 							marginTop: opened ? 16 : 0,
 						}}
 						transition={{ ease: "easeInOut", duration: 0.3 }}
-						initial={false}>
+						initial={false}
+					>
 						{links.map((link) => (
 							<Link
 								key={link.href}
@@ -121,7 +127,8 @@ const Navbar: React.FC<NavbarProps> = ({ links, currentPath }) => {
 										? "bg-neutral-700 font-bold"
 										: "font-medium"
 								}`}
-								onClick={() => setIsOpen(false)}>
+								onClick={() => setIsOpen(false)}
+							>
 								<span className="mr-2">
 									<FontAwesomeIcon icon={link.icon} />
 								</span>

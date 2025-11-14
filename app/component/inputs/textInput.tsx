@@ -29,7 +29,8 @@ const TextInput: React.FC<
 					labelClass ?? ""
 				} cursor-text text-sm font-medium text-left block pl-1 ${
 					error ? "text-red-500" : "text-neutral-400"
-				}`}>
+				}`}
+			>
 				{label}
 				{error && <span className="text-xs float-end py-0.5">{error}</span>}
 			</label>
@@ -41,8 +42,8 @@ const TextInput: React.FC<
 				type={inpType ?? "text"}
 				placeholder={placeholder ?? ""}
 				className={`${inputClass ?? ""} ${
-					error ? "border-red-500" : "border-[#364050]"
-				} w-full rounded-md border bg-[#161b22] px-3 py-2 text-white focus:ring-2 focus:ring-orange-800 focus:outline-none`}
+					error ? "border-error" : "border-border-primary"
+				} w-full rounded-md border bg-widgetbg px-3 py-2 text-white focus:ring-2 focus:ring-primary-dark focus:outline-none`}
 				onChange={onChange}
 			/>
 		</div>

@@ -50,7 +50,7 @@ export default function PriceList() {
 						? "bg-linear-60 from-transparent from-15% via-secondary/10 via-40% to-transparent to-60%"
 						: ""
 				}`}
-				overrideBg={popular ? "bg-[#381b08]" : undefined}
+				overrideBg={popular ? "bg-widgetbg-highlight" : undefined}
 				content={
 					<>
 						{popular && (

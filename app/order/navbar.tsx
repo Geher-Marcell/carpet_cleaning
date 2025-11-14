@@ -28,10 +28,11 @@ const StepperNavbar = forwardRef((props, ref) => {
 		step: { number: number; label: string }
 	) {
 		/* default color */
-		let circleColor = "#333";
+		let circleColor = "var(--color-border-secondary)";
 		if (index <= currentPos) {
 			/* current */
-			circleColor = "linear-gradient(90deg, #db5d0b, #fdc700)";
+			circleColor =
+				"linear-gradient(90deg, var(--color-primary), var(--color-secondary))";
 		}
 
 		let circleIcon = <p>{step.number}</p>;
@@ -44,18 +45,21 @@ const StepperNavbar = forwardRef((props, ref) => {
 		return (
 			<div
 				key={index}
-				className="w-3/12 min-w-fit flex flex-col justify-center items-center gap-1">
+				className="w-3/12 min-w-fit flex flex-col justify-center items-center gap-1"
+			>
 				<motion.div
 					className={`w-8 h-8 rounded-4xl flex justify-center items-center`}
 					style={{}}
 					animate={{
-						backgroundColor: index > currentPos ? circleColor : "#db5d0b",
+						backgroundColor:
+							index > currentPos ? circleColor : "var(--color-primary)",
 						backgroundImage: index <= currentPos ? circleColor : "none",
 					}}
 					transition={{
 						duration: ANIMATION_DURATION,
 						ease: "easeInOut",
-					}}>
+					}}
+				>
 					<motion.div
 						key={
 							index === currentPos
@@ -70,15 +74,20 @@ const StepperNavbar = forwardRef((props, ref) => {
 						transition={{
 							duration: ANIMATION_DURATION,
 							ease: "easeInOut",
-						}}>
+						}}
+					>
 						{circleIcon}
 					</motion.div>
 				</motion.div>
 				<motion.p
 					className={`text-xs`}
 					animate={{
-						color: index === currentPos ? "#fff" : "#888",
-					}}>
+						color:
+							index === currentPos
+								? "var(--color-text-white)"
+								: "var(--color-text-secondary)",
+					}}
+				>
 					{step.label}
 				</motion.p>
 			</div>
@@ -102,9 +111,10 @@ const StepperNavbar = forwardRef((props, ref) => {
 							{/* Lines between the circles */}
 							{index < steps.length - 1 && (
 								<div
-									className={`w-full text-transparent h-0.5 mb-5 rounded-full bg-[#333] overflow-hidden`}>
+									className={`w-full text-transparent h-0.5 mb-5 rounded-full bg-border-secondary overflow-hidden`}
+								>
 									<motion.div
-										className="h-full bg-linear-90 from-[#fdc700] to-[#db5d0b]"
+										className="h-full bg-linear-90 from-secondary to-primary"
 										initial={{ width: "0%" }}
 										animate={{
 											width: currentPos - 1 >= index ? "100%" : "0%",
@@ -112,7 +122,8 @@ const StepperNavbar = forwardRef((props, ref) => {
 										transition={{
 											duration: ANIMATION_DURATION,
 											ease: "easeInOut",
-										}}></motion.div>
+										}}
+									></motion.div>
 								</div>
 							)}
 						</React.Fragment>

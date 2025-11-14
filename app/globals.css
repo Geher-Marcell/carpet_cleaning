@@ -2,25 +2,66 @@
 
 @import "tailwindcss";
 
+/**
+ * UNIFIED COLOR PALETTE
+ * =====================
+ * This color system provides a consistent design language across the entire website.
+ * 
+ * Usage in Tailwind classes:
+ * - Backgrounds: bg-navbarbg, bg-pagebg, bg-widgetbg, bg-primary, bg-secondary
+ * - Text: text-primary, text-secondary, text-muted, text-white
+ * - Borders: border-border-primary, border-border-secondary
+ * - Status: border-error, text-error, bg-success
+ * 
+ * Usage in inline styles:
+ * - var(--color-primary), var(--color-widgetbg), etc.
+ */
+
 @theme {
+	/* Background Colors */
 	--color-navbarbg: #07090c;
 	--color-pagebg: #0d1117;
-
-	--color-text-primary: #f9f2f4;
-	/* --color-text-primary: oklch(0.3676 0.2074 300); */
-
-	/* --color-primary: oklch(0.6293 0.1759 45.16); */
-	--color-primary: #db5d0b;
-	/* --color-primary: oklch(0.5644 0.2251 28.61); */
-
-	--color-secondary: #fdc700;
-	/* --color-secondary: oklch(0.8535 0.1455 170.47); */
-
 	--color-widgetbg: #161b22;
-	/* --color-widgetbg: oklch(0.6702 0.1801 144.93); */
+	--color-widgetbg-hover: #1c2128;
+	--color-widgetbg-active: #21262d;
+	--color-widgetbg-highlight: #381b08;
 
+	/* Text Colors */
+	--color-text-primary: #f9f2f4;
+	--color-text-secondary: #888888;
+	--color-text-muted: #6e6e6e;
+	--color-text-white: #ffffff;
+
+	/* Brand Colors */
+	--color-primary: #db5d0b;
+	--color-primary-light: #ff7a1f;
+	--color-primary-dark: #b34909;
+	--color-secondary: #fdc700;
+	--color-secondary-light: #ffd633;
+	--color-secondary-dark: #d4a700;
+
+	/* Border & Outline Colors */
+	--color-border-primary: #364050;
+	--color-border-secondary: #333333;
+	--color-border-muted: #21262d;
 	--color-widgetoutline: #364050;
-	/* --color-widgetoutline: oklch(0.5849 0.2146 0); */
+
+	/* Utility Colors */
+	--color-overlay: rgba(0, 0, 0, 0.5);
+	--color-overlay-light: rgba(0, 0, 0, 0.3);
+	--color-gray-light: #808080;
+	--color-gray-medium: rgba(110, 110, 110, 0.4);
+	--color-gray-dark: #666666;
+
+	/* Status Colors */
+	--color-error: #ef4444;
+	--color-success: #22c55e;
+	--color-warning: #f59e0b;
+	--color-info: #3b82f6;
+
+	/* Shadow Colors */
+	--color-shadow: rgba(0, 0, 0, 0.25);
+	--color-shadow-lg: rgba(0, 0, 0, 0.4);
 }
 
 html {

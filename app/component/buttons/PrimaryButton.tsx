@@ -19,7 +19,7 @@ const PrimaryButton: React.FC<
 		<motion.button
 			whileHover={{
 				scale: 1.02,
-				boxShadow: "0 4px 14px 0 rgba(0, 0, 0, 0.25)",
+				boxShadow: "0 4px 14px 0 var(--color-shadow)",
 			}}
 			whileTap={{ scale: 0.98 }}
 			transition={{ type: "spring", stiffness: 200, damping: 20 }}
