@@ -1,5 +1,5 @@
 "use client";
-import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "motion/react";
 import React from "react";
@@ -21,7 +21,7 @@ const RadioButton: React.FC<RadioButtonProps> = ({
 	value,
 }) => {
 	return (
-		<div className="flex items-center gap-x-2 text-text-white">
+		<div className="flex items-center gap-x-2 text-text-primary">
 			<motion.button
 				id={label}
 				className={`relative inline-flex h-6 w-6 cursor-pointer items-center rounded-full bg-widgetbg-active`}
@@ -48,7 +48,7 @@ const RadioButton: React.FC<RadioButtonProps> = ({
 					{" "}
 					<FontAwesomeIcon
 						icon={faCheck}
-						className={`z-10 m-auto text-text-white ${
+						className={`z-10 m-auto text-text-primary pr-px pt-1 ${
 							checked ? "opacity-100" : "opacity-0"
 						} `}
 					/>

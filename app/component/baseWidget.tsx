@@ -8,7 +8,7 @@ const BaseWidget: React.FC<{
 	return (
 		<>
 			<div
-				className={`${bgColor} rounded-xl p-5 outline-1 outline-widgetoutline ${className}`}
+				className={`${bgColor} rounded-xl p-5 outline-1 outline-border-primary ${className}`}
 			>
 				{content}
 			</div>

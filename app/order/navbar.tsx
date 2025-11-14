@@ -101,7 +101,7 @@ const StepperNavbar = forwardRef((props, ref) => {
 					<Link href={"./"}>
 						<FontAwesomeIcon
 							icon={faArrowLeft}
-							className="text-text-white size-5"
+							className="text-text-primary size-5"
 						/>
 					</Link>
 					<h1 className="text-2xl font-bold">Szolgáltatás Foglalása</h1>

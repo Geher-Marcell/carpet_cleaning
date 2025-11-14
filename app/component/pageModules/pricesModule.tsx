@@ -56,7 +56,7 @@ export default function PriceList() {
 						{popular && (
 							<>
 								<div className="absolute -inset-0.5 rounded-xl bg-linear-60 from-transparent from-20% via-secondary to-transparent to-60% -z-30 bg-primary" />
-								<p className="text-text-white text-xs font-bold bg-primary absolute -top-3 right-4 rounded-2xl w-fit p-1 pr-2 pl-2">
+								<p className="text-text-primary text-xs font-bold bg-primary absolute -top-3 right-4 rounded-2xl w-fit p-1 pr-2 pl-2">
 									<DynamicFAIcon exportName="faFire" className="mr-1" />
 									NÉPSZERŰ
 								</p>

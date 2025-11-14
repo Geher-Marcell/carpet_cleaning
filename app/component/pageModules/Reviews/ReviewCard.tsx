@@ -4,7 +4,7 @@ const ReviewCard: React.FC<{ writer: string; content: string }> = ({
 }) => {
 	return (
 		<>
-			<div className="bg-widgetbg outline-1 outline-widgetoutline w-85 h-40 p-3.5 rounded-md">
+			<div className="bg-widgetbg outline-1 outline-border-primary w-85 h-40 p-3.5 rounded-md">
 				<p className="italic mb-2 font-medium">{content}</p>
 				<p className="text-text-secondary font-semibold">- {writer}</p>
 			</div>

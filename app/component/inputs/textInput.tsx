@@ -43,7 +43,7 @@ const TextInput: React.FC<
 				placeholder={placeholder ?? ""}
 				className={`${inputClass ?? ""} ${
 					error ? "border-error" : "border-border-primary"
-				} w-full rounded-md border bg-widgetbg px-3 py-2 text-text-white focus:ring-2 focus:ring-primary-dark focus:outline-none`}
+				} w-full rounded-md border bg-widgetbg px-3 py-2 text-text-primary focus:ring-2 focus:ring-primary-dark focus:outline-none`}
 				onChange={onChange}
 			/>
 		</div>
