@@ -11,8 +11,8 @@ import {
 	faThumbsUp,
 } from "@fortawesome/free-solid-svg-icons";
 import NavbarWrapper from "./Navbar/navbarWrapper";
-import Carousel from "./component/pageModules/Reviews/ReviewsCarousel";
-import ReviewsGrid from "./component/pageModules/Reviews/ReviewsGrid";
+import Carousel from "./component/carousel/Carousel";
+import ReviewsModule from "./component/pageModules/reviewsModule";
 
 export default function Home() {
 	// const [message, setMessage] = useState("");
@@ -38,7 +38,8 @@ export default function Home() {
 						backgroundRepeat: "no-repeat",
 						backgroundSize: "cover",
 						backgroundPosition: "center",
-					}}>
+					}}
+				>
 					{/* Dark overlay */}
 					<div className="absolute inset-0 bg-black/50"></div>
 
@@ -118,19 +119,15 @@ export default function Home() {
 
 				<hr className="text-gray-800" />
 
-				<div>
-					<h1 className="text-3xl font-semibold flex justify-center mb-10 mt-9">
-						Vélemények
-					</h1>
-					<div className="hidden md:block">
-						<ReviewsGrid />
-					</div>
-					<div className="block md:hidden">
-						<Carousel />
-					</div>
+				<div id="reviews" className="pt-10">
+					<h1 className="text-4xl text-center font-bold">Szolgáltatásaink</h1>
 				</div>
+				<ReviewsModule />
+
+				<hr className="text-gray-800" />
+
 				<footer>
-					<div className="bg-[#161b22] p-5 mt-15 text-center">
+					<div className="bg-widgetbg p-5 text-center">
 						<div className="flex justify-center gap-5">
 							<div className="font-medium hover:cursor-pointer">
 								Szolgáltatások

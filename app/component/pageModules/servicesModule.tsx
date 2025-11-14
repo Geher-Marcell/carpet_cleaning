@@ -1,7 +1,8 @@
-import InfoWidget from "../widgets/infoWidget";
 import PrimaryButton from "../buttons/PrimaryButton";
 import { useEffect, useState } from "react";
 import { ServiceProps } from "../props/serviceProps";
+import BaseWidget from "../baseWidget";
+import DynamicFAIcon from "../utils/DynamicIcon";
 
 export default function Services() {
 	const [services, setServices] = useState<Record<string, ServiceProps[]>>({});
@@ -11,6 +12,7 @@ export default function Services() {
 			.then((res) => res.json())
 			.then((data) => {
 				const grouped = data.services.reduce(
+					//A szolgáltatások csoportosítása kategória szerint
 					(acc: Record<string, ServiceProps[]>, service: ServiceProps) => {
 						const type =
 							service.category?.charAt(0).toUpperCase() +
@@ -32,23 +34,32 @@ export default function Services() {
 
 	return (
 		<>
-			<div
-				className="flex flex-col pt-10 gap-10 items-center justify-center
-			 		*:flex *:flex-col *:justify-center *:items-center *:gap-4">
+			<div className="flex flex-col items-center p-10 gap-10">
 				{Object.keys(services).map((group, index) => (
-					<div key={index}>
-						<h3 className="text-2xl text-neutral-200 font-semibold">
+					<div key={index} className="space-y-4">
+						<h3 className="text-2xl text-text-primary/70 font-semibold text-center">
 							{group || "Általános tisztítás"}
 						</h3>
-						<div className="flex flex-wrap justify-center items-center gap-5">
+						<div className="flex flex-wrap items-start justify-center gap-5">
 							{services[group]?.map((service, idx) => (
-								<InfoWidget
+								<BaseWidget
 									key={idx}
-									title={service.name || "Unknown Service"}
-									description={
-										service.description || "No description available"
+									className="w-75 h-40 space-y-2"
+									content={
+										<>
+											<DynamicFAIcon
+												exportName={service.iconName || "faCircle"}
+												className="text-primary size-5 mb-4"
+											/>
+											<p className="text-xl font-bold text-text-primary">
+												{service.name || "Unknown Service"}
+											</p>
+
+											<p className="text-md text-text-primary/50 font-medium">
+												{service.description || "No description available"}
+											</p>
+										</>
 									}
-									iconName={service.iconName || "faCircle"}
 								/>
 							))}
 						</div>

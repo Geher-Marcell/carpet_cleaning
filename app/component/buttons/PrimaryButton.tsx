@@ -23,13 +23,14 @@ const PrimaryButton: React.FC<
 			}}
 			whileTap={{ scale: 0.98 }}
 			transition={{ type: "spring", stiffness: 200, damping: 20 }}
-			className={`${buttonClass} w-full space-x-1 rounded-md px-4 py-2 text-white cursor-pointer bg-primary`}
+			className={`${buttonClass} w-full space-x-1 rounded-md px-4 py-2 cursor-pointer bg-primary`}
 			onClick={(e) => {
 				if (disableAfterClick) {
 					(e.target as HTMLButtonElement).disabled = true;
 				}
 				if (callback) callback();
-			}}>
+			}}
+		>
 			{icon && (
 				<span>
 					<FontAwesomeIcon icon={icon} className={`${iconClass}`} />
