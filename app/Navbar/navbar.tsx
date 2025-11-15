@@ -78,31 +78,16 @@ const Navbar: React.FC<NavbarProps> = ({ links, currentPath }) => {
 					{isLargerThanMd && (
 						<div className="flex flex-row gap-2">
 							{links.map((link) => (
-								<motion.div
+								<a
 									key={link.href}
-									animate={{
-										backgroundColor:
-											currentPath === link.href
-												? "var(--color-widgetbg-active)"
-												: "rgba(0, 0, 0, 0)", // transparent
-										color:
-											currentPath === link.href
-												? "var(--color-text-white)"
-												: "var(--color-text-primary)",
-									}}
-									transition={{
-										ease: "easeInOut",
-										duration: 0.2,
-									}}
+									href={link.href}
 									className={`px-4 py-2 text-lg rounded`}
 								>
-									<a href={link.href}>
-										<span className="mr-2">
-											<FontAwesomeIcon icon={link.icon} />
-										</span>
-										{link.label}
-									</a>
-								</motion.div>
+									<span className="mr-2">
+										<FontAwesomeIcon icon={link.icon} />
+									</span>
+									{link.label}
+								</a>
 							))}
 						</div>
 					)}
@@ -122,9 +107,7 @@ const Navbar: React.FC<NavbarProps> = ({ links, currentPath }) => {
 							<Link
 								key={link.href}
 								href={link.href}
-								className={`block w-full px-4 py-2 text-lg rounded ${
-									currentPath === link.href ? "font-bold" : "font-medium"
-								}`}
+								className={`block w-full px-4 py-2 text-lg rounded`}
 								onClick={() => setIsOpen(false)}
 							>
 								<span className="mr-2">

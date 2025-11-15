@@ -30,7 +30,7 @@ const StepperNavbar = forwardRef((props, ref) => {
 		/* default color */
 		let circleColor = "var(--color-border-secondary)";
 		if (index <= currentPos) {
-			/* current */
+			/* current and bigger */
 			circleColor =
 				"linear-gradient(90deg, var(--color-primary), var(--color-secondary))";
 		}
@@ -53,7 +53,10 @@ const StepperNavbar = forwardRef((props, ref) => {
 					animate={{
 						backgroundColor:
 							index > currentPos ? circleColor : "var(--color-primary)",
-						backgroundImage: index <= currentPos ? circleColor : "none",
+						backgroundImage:
+							index <= currentPos
+								? circleColor
+								: "linear-gradient(0deg, transparent, transparent)", //idk why 'none' doesnt work here
 					}}
 					transition={{
 						duration: ANIMATION_DURATION,
@@ -84,11 +87,12 @@ const StepperNavbar = forwardRef((props, ref) => {
 					animate={{
 						color:
 							index === currentPos
-								? "var(--color-text-white)"
-								: "var(--color-text-secondary)",
+								? "var(--color-text-primary)"
+								: "var(--color-text-muted)",
 					}}
 				>
-					{step.label}
+					{/* {step.label} */}
+					{index} - {currentPos}
 				</motion.p>
 			</div>
 		);
