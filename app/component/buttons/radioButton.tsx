@@ -38,12 +38,10 @@ const RadioButton: React.FC<RadioButtonProps> = ({
 					initial={{ scale: 1 }}
 					animate={{
 						scale: checked ? 1 : 0,
-						backgroundColor: checked
-							? "var(--color-primary)"
-							: "var(--color-primary)00",
+						opacity: checked ? 1 : 0,
 					}}
 					transition={{ ease: "easeOut", duration: 0.2 }}
-					className={`absolute inset-0 rounded-full`}
+					className={`absolute inset-0 rounded-full bg-primary`}
 				>
 					{" "}
 					<FontAwesomeIcon
