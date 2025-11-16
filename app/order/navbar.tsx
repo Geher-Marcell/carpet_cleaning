@@ -91,8 +91,8 @@ const StepperNavbar = forwardRef((props, ref) => {
 								: "var(--color-text-muted)",
 					}}
 				>
-					{/* {step.label} */}
-					{index} - {currentPos}
+					{step.label}
+					{/* {index} - {currentPos} */}
 				</motion.p>
 			</div>
 		);

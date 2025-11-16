@@ -5,22 +5,11 @@ import PrimaryButton from "./component/buttons/PrimaryButton";
 import Services from "./component/pageModules/servicesModule";
 import NavbarWrapper from "./Navbar/navbarWrapper";
 import ReviewsModule from "./component/pageModules/reviewsModule";
-import BaseWidget from "./component/baseWidget";
-import DynamicFAIcon from "./component/utils/DynamicIcon";
 import WhyUsModule from "./component/pageModules/whyusModule";
+import DynamicFAIcon from "./component/utils/DynamicIcon";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Home() {
-	// const [message, setMessage] = useState("");
-
-	// useEffect(() => {
-	// 	fetch("/api/hello") //GET request
-	// 		.then((res) => res.json())
-	// 		.then((data) => {
-	// 			setMessage(data.message);
-	// 			console.log("Fetched message:", data.message);
-	// 		});
-	// }, []);
-
 	return (
 		<>
 			<NavbarWrapper />
@@ -90,18 +79,26 @@ export default function Home() {
 				<hr className="text-border-muted" />
 
 				<footer>
-					<div className="bg-widgetbg p-5 text-center">
+					<div className="bg-widgetbg p-5 text-center space-y-4">
+						<h5 className="font-semibold">Időpontfoglaló sablon-weboldal:</h5>
 						<div className="flex justify-center gap-5">
-							<div className="font-medium hover:cursor-pointer">
-								Szolgáltatások
-							</div>
-							<div className="font-medium hover:cursor-pointer">Rólunk</div>
-							<div className="font-medium hover:cursor-pointer">Kapcsolat</div>
+							<a
+								className="font-semibold text-blue-400 underline"
+								href="https://github.com/Geher-Marcell"
+							>
+								Gehér Marcell
+							</a>
+							<a
+								className="font-semibold text-blue-400 underline"
+								href="https://github.com/selmeczi-attila"
+							>
+								Selmeczi Attila
+							</a>
 						</div>
 
-						<p className="mt-3 text-text-muted">
+						{/* <p className="mt-3 text-text-muted">
 							© 2025 CleanCo. Minden jog fenntartva.
-						</p>
+						</p> */}
 					</div>
 				</footer>
 			</main>
