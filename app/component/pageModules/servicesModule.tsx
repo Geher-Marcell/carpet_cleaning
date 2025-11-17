@@ -1,76 +1,74 @@
-import InfoWidget from "../widgets/infoWidget";
-import {
-  faCar,
-  faPaw,
-  faCircle,
-  faHandsWash,
-  faBroom,
-} from "@fortawesome/free-solid-svg-icons";
 import PrimaryButton from "../buttons/PrimaryButton";
+import { useEffect, useState } from "react";
+import { ServiceProps } from "../props/serviceProps";
+import BaseWidget from "../baseWidget";
+import DynamicFAIcon from "../utils/DynamicIcon";
 
 export default function Services() {
-  return (
-    <>
-      <div
-        className="flex flex-col pt-10 gap-10 items-center justify-center
-			 		*:flex *:flex-col *:justify-center *:items-center *:gap-4"
-      >
-        <div>
-          <h3 className="text-2xl text-neutral-200 font-semibold">
-            Szőnyegtisztítás
-          </h3>
-          <div className="flex flex-wrap justify-center items-center gap-5">
-            <InfoWidget
-              title="Mélyszőnyeg Tisztítás"
-              description={"Alapos, mély tisztítás a szőnyegeinek."}
-              icon={faBroom}
-            />
+	const [services, setServices] = useState<Record<string, ServiceProps[]>>({});
 
-            <InfoWidget
-              title="Folteltávolítás"
-              description={"Makacs foltok hatékony eltávolítása."}
-              icon={faCircle}
-            />
+	useEffect(() => {
+		fetch("/api/services") //GET request
+			.then((res) => res.json())
+			.then((data) => {
+				const grouped = data.services.reduce(
+					//A szolgáltatások csoportosítása kategória szerint
+					(acc: Record<string, ServiceProps[]>, service: ServiceProps) => {
+						const type =
+							service.category?.charAt(0).toUpperCase() +
+							service.category?.slice(1) +
+							"tisztítás";
+						if (!type) return acc; // Skip invalid categories
 
-            <InfoWidget
-              title="Kisállat Szag Eltávolítás"
-              description={"Távolítsa el a kisállat szagokat a szőnyegekből."}
-              icon={faPaw}
-            />
-          </div>
-        </div>
-        <div>
-          <h3 className="text-2xl text-neutral-200 font-semibold">
-            Autótisztítás
-          </h3>
+						if (!acc[type]) {
+							acc[type] = [];
+						}
+						acc[type].push(service);
+						return acc;
+					},
+					{}
+				);
+				setServices(grouped);
+			});
+	}, []);
 
-          <div className="flex flex-wrap justify-center items-center gap-5">
-            <InfoWidget
-              title="Belső Részletezés"
-              description={"Autója belső terének teljes tisztítása."}
-              icon={faCar}
-            />
+	return (
+		<>
+			<div className="flex flex-col items-center p-10 gap-10">
+				{Object.keys(services).map((group, index) => (
+					<div key={index} className="space-y-4">
+						<h3 className="text-2xl text-text-primary/70 font-semibold text-center">
+							{group || "Általános tisztítás"}
+						</h3>
+						<div className="flex flex-wrap items-start justify-center gap-5">
+							{services[group]?.map((service, idx) => (
+								<BaseWidget
+									key={idx}
+									className="w-75 h-40 space-y-2"
+									content={
+										<>
+											<DynamicFAIcon
+												exportName={service.iconName || "faCircle"}
+												className="text-primary size-5 mb-4"
+											/>
+											<p className="text-xl font-bold text-text-primary">
+												{service.name || "Unknown Service"}
+											</p>
 
-            <InfoWidget
-              title="Külső Mosás & Viaszolás"
-              description={"Védő mosás és viasz a fényes felületért."}
-              icon={faHandsWash}
-            />
-
-            <InfoWidget
-              title="Teljes Körű Autómosás"
-              description={"Átfogó belső és külső tisztítás."}
-              icon={faCar}
-            />
-          </div>
-        </div>
-        <div className="w-70 pb-10">
-          <PrimaryButton
-            label="Kérjen ingyenes árajánlatot"
-            colorClass="bg-[#3b82f6]"
-          />
-        </div>
-      </div>
-    </>
-  );
+											<p className="text-md text-text-primary/50 font-medium">
+												{service.description || "No description available"}
+											</p>
+										</>
+									}
+								/>
+							))}
+						</div>
+					</div>
+				))}
+				<div className="w-70 pb-10">
+					<PrimaryButton label="Kérjen ingyenes árajánlatot" />
+				</div>
+			</div>
+		</>
+	);
 }
