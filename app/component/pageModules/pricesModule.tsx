@@ -7,7 +7,7 @@ import BaseWidget from "../baseWidget";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-export default function PriceList() {
+export default function PricesModule() {
 	const [services, setServices] = useState<Record<string, ServiceProps[]>>({});
 
 	const router = useRouter();
@@ -28,10 +28,15 @@ export default function PriceList() {
 							acc[type] = [];
 						}
 						acc[type].push(service);
+
+						// Sort the items in each group by id
+						acc[type].sort((a, b) => (a.id || 0) - (b.id || 0));
+
 						return acc;
 					},
 					{}
 				);
+
 				setServices(grouped);
 			});
 	}, []);

@@ -1,6 +1,6 @@
 "use client";
 
-import PriceList from "./component/pageModules/pricesModule";
+import PricesModule from "./component/pageModules/pricesModule";
 import PrimaryButton from "./component/buttons/PrimaryButton";
 import Services from "./component/pageModules/servicesModule";
 import NavbarWrapper from "./Navbar/navbarWrapper";
@@ -67,7 +67,7 @@ export default function Home() {
 				<div id="pricelist" className="pt-10">
 					<h1 className="text-4xl text-center font-bold">Áraink</h1>
 				</div>
-				<PriceList />
+				<PricesModule />
 
 				<hr className="text-border-muted" />
 

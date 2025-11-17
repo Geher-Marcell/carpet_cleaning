@@ -55,9 +55,7 @@ const makeQuery = `
     UPDATE services SET hot = TRUE WHERE id = 1 OR id = 6;
 `;
 
-const dropQuery = db.usingSqlite
-  ? `SELECT name FROM sqlite_master WHERE type = 'table' AND name NOT LIKE 'sqlite_%';`
-  : `DO $$
+const dropQuery = `DO $$
      DECLARE
          r RECORD;
      BEGIN
@@ -67,34 +65,27 @@ const dropQuery = db.usingSqlite
      END $$;`;
 
 async function Doit(command) {
-  try {
-    if (command == "create") {
-      for (const query of makeQuery
-        .split(";")
-        .map((q) => q.trim())
-        .filter((q) => q.length > 0)) {
-        await db.Write(query + ";");
-      }
-    } else if (command == "drop") {
-      if (db.usingSqlite) {
-        const tables = await db.Read(dropQuery);
-        for (const table of tables) {
-          await db.Write(`DROP TABLE IF EXISTS "${table.name}";`);
-        }
-      } else {
-        await db.Write(dropQuery);
-      }
-    }
-    console.log("Table " + command + " ran successfully.");
-  } catch (error) {
-    console.error("Error with table " + command + ":", error);
-    process.exit(1);
-  } finally {
-    await db.Close();
-  }
+	try {
+		if (command == "create") {
+			for (const query of makeQuery
+				.split(";")
+				.map((q) => q.trim())
+				.filter((q) => q.length > 0)) {
+				await db.Write(query + ";");
+			}
+		} else if (command == "drop") {
+			await db.Write(dropQuery);
+		}
+		console.log("Table " + command + " ran successfully.");
+	} catch (error) {
+		console.error("Error with table " + command + ":", error);
+		process.exit(1);
+	} finally {
+		await db.Close();
+	}
 
-  console.log("Done");
-  process.exit(0);
+	console.log("Done");
+	process.exit(0);
 }
 
 const commands = ["create", "drop"];
@@ -102,8 +93,8 @@ const commands = ["create", "drop"];
 const command = process.argv[2];
 
 if (!commands.includes(command)) {
-  console.log("Please provide a valid command: create or drop");
-  process.exit(1);
+	console.log("Please provide a valid command: create or drop");
+	process.exit(1);
 }
 
 Doit(command);

@@ -4,19 +4,19 @@ import ReviewCard from "./Reviews/ReviewCard";
 import Carousel from "./Reviews/ReviewCarousel";
 
 export default function ReviewsModule() {
-	const Card = (writer: string, content: string) => {
-		return (
-			<BaseWidget
-				className="w-85 h-40 p-3.5 rounded-md"
-				content={
-					<>
-						<p className="italic mb-2 font-medium">{content}</p>
-						<p className="text-text-secondary font-semibold">- {writer}</p>
-					</>
-				}
-			/>
-		);
-	};
+	// const Card = (writer: string, content: string) => {
+	// 	return (
+	// 		<BaseWidget
+	// 			className="w-85 h-40 p-3.5 rounded-md"
+	// 			content={
+	// 				<>
+	// 					<p className="italic mb-2 font-medium">{content}</p>
+	// 					<p className="text-text-secondary font-semibold">- {writer}</p>
+	// 				</>
+	// 			}
+	// 		/>
+	// 	);
+	// };
 
 	return (
 		<div className="py-10">
