@@ -7,7 +7,8 @@ dotenv.config();
 class Database {   
     constructor() {
         this.db = null;
-        this.usingSqlite = fs.existsSync("./node_modules/sqlite3");
+        this.isDevelopment = process.env.NODE_ENV === "development";
+        this.usingSqlite = this.isDevelopment && fs.existsSync("./node_modules/sqlite3");
     }
 
     async Connect(){
@@ -24,7 +25,7 @@ class Database {
                     console.log("Connected to SQLite database.");
                 }
             });
-        }else if (process.env.DATABASE_URL) { // PostgreSQL used in production
+        } else if (process.env.DATABASE_URL) { // PostgreSQL used in production
             this.db = new Pool({
                 connectionString: process.env.DATABASE_URL,
                 ssl: {
@@ -33,7 +34,7 @@ class Database {
             });
 
             console.log("Connected to PostgreSQL database.");
-        }else{
+        } else {
             throw new Error("No database configuration found.\nPlease install sqlite3 or provide a DATABASE_URL.");
         }
         return this.db;
