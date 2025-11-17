@@ -4,12 +4,12 @@ const db = new Database();
 
 const makeQuery = `
     CREATE TABLE IF NOT EXISTS service_types (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id SERIAL PRIMARY KEY,
         name VARCHAR(10) NOT NULL
     );
 
     CREATE TABLE IF NOT EXISTS services (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id SERIAL PRIMARY KEY,
         name VARCHAR(100) NOT NULL,
         category INTEGER NOT NULL,
         description TEXT,
@@ -23,7 +23,7 @@ const makeQuery = `
     );
 
     CREATE TABLE IF NOT EXISTS orders (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id SERIAL PRIMARY KEY,
         customer_name VARCHAR(50) NOT NULL,
         customer_email VARCHAR(50) NOT NULL,
         customer_phone VARCHAR(12) NOT NULL,
@@ -40,7 +40,8 @@ const makeQuery = `
     INSERT INTO service_types (name) VALUES
         ('szőnyeg'),
         ('autó'),
-        ('egyéb');
+        ('egyéb')
+        ON CONFLICT DO NOTHING;
 
     INSERT INTO services (name, description, price, unit, category, iconName, highlights) VALUES
         ('Mélyszőnyegtisztítás', 'Professzionális mélytisztítás a szőnyegei számára.', 2500, 'm2', 1, 'faBroom', 'Gyors száradás/Környezetbarát tisztítószerek/Alga és gomba elleni védelem'),
@@ -48,21 +49,22 @@ const makeQuery = `
         ('Kisállat Szageltávolítás', 'Hatékony szageltávolítás kisállat tulajdonosok számára.', 4000, 'm2', 1, 'faPaw', 'Kisállatszőr eltávolítás/Friss illat'),
         ('Belső Részletezés', 'Autója belső terének alapos tisztítása.', 20000, 'autó', 2, 'faCar', 'Belső porszívózás/Ülések tisztítása'),
         ('Külső Mosás', 'Teljes körű külső autómosás és védő viaszolás.', 15000, 'autó', 2, 'faHandsWash', 'Kézi mosás/Védő viasz'),
-        ('Teljes Körű Autóápolás', 'Belső és külső tisztítás egy csomagban.', 30000, 'autó', 2, 'faCarSide', 'Teljes körű szolgáltatás');
+        ('Teljes Körű Autóápolás', 'Belső és külső tisztítás egy csomagban.', 30000, 'autó', 2, 'faCarSide', 'Teljes körű szolgáltatás')
+        ON CONFLICT DO NOTHING;
 
-	  UPDATE services SET hot = TRUE WHERE id = 1 OR id = 6;
+    UPDATE services SET hot = TRUE WHERE id = 1 OR id = 6;
 `;
 
 const dropQuery = db.usingSqlite
   ? `SELECT name FROM sqlite_master WHERE type = 'table' AND name NOT LIKE 'sqlite_%';`
-  : ` $$ DECLARE
-		r RECORD;
-	BEGIN
-		FOR r IN (SELECT tablename FROM pg_tables WHERE schemaname = 'public') LOOP
-			EXECUTE 'DROP TABLE IF EXISTS ' || quote_ident(r.tablename) || ' CASCADE';
-		END LOOP;
-	END $$;
-`;
+  : `DO $$
+     DECLARE
+         r RECORD;
+     BEGIN
+         FOR r IN (SELECT tablename FROM pg_tables WHERE schemaname = 'public') LOOP
+             EXECUTE 'DROP TABLE IF EXISTS ' || quote_ident(r.tablename) || ' CASCADE';
+         END LOOP;
+     END $$;`;
 
 async function Doit(command) {
   try {
@@ -83,7 +85,6 @@ async function Doit(command) {
         await db.Write(dropQuery);
       }
     }
-    // await db.Write(command == "create" ? makeQuery : dropQuery);
     console.log("Table " + command + " ran successfully.");
   } catch (error) {
     console.error("Error with table " + command + ":", error);
