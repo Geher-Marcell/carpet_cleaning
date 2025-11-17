@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import * as Icons from "@fortawesome/free-solid-svg-icons";
 
 export default function DynamicFAIcon({
     exportName,
@@ -26,22 +27,14 @@ export default function DynamicFAIcon({
     className?: string;
 }) {
     const [icon, setIcon] = useState<IconDefinition | null>(null);
-    // console.log("Dynamically imported icon:", exportName);
 
     useEffect(() => {
-        let mounted = true;
-        import("@fortawesome/free-solid-svg-icons").then((mod) => {
-            //   console.log("Available keys in module:", Object.keys(mod));
-            const modTyped = mod as unknown as Record<
-                string,
-                IconDefinition | undefined
-            >;
-            const found = modTyped[exportName];
-            if (mounted && found) setIcon(found);
-        });
-        return () => {
-            mounted = false;
-        };
+        const foundIcon = (Icons as unknown as Record<string, IconDefinition>)[exportName];
+        if (foundIcon) {
+            setIcon(foundIcon);
+        } else {
+            console.error(`Icon with name "${exportName}" not found.`);
+        }
     }, [exportName]);
 
     if (!icon) return null;
