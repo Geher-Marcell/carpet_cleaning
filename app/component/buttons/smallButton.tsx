@@ -1,10 +1,8 @@
-"use client";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { motion } from "motion/react";
 import { ButtonProps } from "../props/btnProps";
+import { motion } from "motion/react";
 
-const PrimaryButton: React.FC<
+const SmallButton: React.FC<
 	ButtonProps & { callback?: () => void; disableAfterClick?: boolean }
 > = ({
 	label,
@@ -18,12 +16,12 @@ const PrimaryButton: React.FC<
 	return (
 		<motion.button
 			whileHover={{
-				scale: 1.02,
+				scale: 1.01,
 				boxShadow: "0 4px 14px 0 var(--color-shadow)",
 			}}
-			whileTap={{ scale: 0.98 }}
+			whileTap={{ scale: 0.99 }}
 			transition={{ type: "spring", stiffness: 200, damping: 20 }}
-			className={`${buttonClass} w-full space-x-1 rounded-md px-4 py-2 cursor-pointer bg-primary`}
+			className={`${buttonClass} flex cursor-pointer items-center justify-center rounded-md bg-widgetbg-active px-3 py-3 text-sm`}
 			onClick={(e) => {
 				if (disableAfterClick) {
 					(e.target as HTMLButtonElement).disabled = true;
@@ -31,16 +29,10 @@ const PrimaryButton: React.FC<
 				if (callback) callback();
 			}}
 		>
-			{icon && (
-				<span>
-					<FontAwesomeIcon icon={icon} className={`${iconClass}`} />
-				</span>
-			)}
-			{label && (
-				<span className={`${labelClass} text-lg font-semibold`}>{label}</span>
-			)}
+			{icon && <FontAwesomeIcon icon={icon} className={`${iconClass}`} />}
+			{label && <span className={`${labelClass}`}>{label}</span>}
 		</motion.button>
 	);
 };
 
-export default PrimaryButton;
+export default SmallButton;

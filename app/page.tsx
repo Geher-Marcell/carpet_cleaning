@@ -1,29 +1,15 @@
 "use client";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PriceList from "./component/pageModules/pricesModule";
 import PrimaryButton from "./component/buttons/PrimaryButton";
 import Services from "./component/pageModules/servicesModule";
-import {
-	faClock,
-	faLeaf,
-	faPerson,
-	faThumbsUp,
-} from "@fortawesome/free-solid-svg-icons";
 import NavbarWrapper from "./Navbar/navbarWrapper";
+import ReviewsModule from "./component/pageModules/reviewsModule";
+import WhyUsModule from "./component/pageModules/whyusModule";
+import DynamicFAIcon from "./component/utils/DynamicIcon";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Home() {
-	// const [message, setMessage] = useState("");
-
-	// useEffect(() => {
-	// 	fetch("/api/hello") //GET request
-	// 		.then((res) => res.json())
-	// 		.then((data) => {
-	// 			setMessage(data.message);
-	// 			console.log("Fetched message:", data.message);
-	// 		});
-	// }, []);
-
 	return (
 		<>
 			<NavbarWrapper />
@@ -60,99 +46,59 @@ export default function Home() {
 						</div>
 					</div>
 				</div>
-				<hr className="text-gray-800" />
+				<hr className="text-border-muted" />
 
 				<div id="services" className="pt-10">
 					<h1 className="text-4xl text-center font-bold">Szolgáltatásaink</h1>
 				</div>
 				<Services />
 
-				<hr className="text-gray-800" />
-				<div className="p-10 space-y-10">
-					<h1 className="text-3xl font-semibold flex justify-center">
+				<hr className="text-border-muted" />
+
+				<div id="whyus" className="pt-10">
+					<h1 className="text-3xl text-center font-semibold">
 						Miért válasszon minket?
 					</h1>
-					<div className="flex justify-center flex-col items-center **:text-center">
-						<div className="flex flex-wrap gap-5 justify-center">
-							<div className="flex items-center justify-center flex-col w-40 h-40 rounded-xl bg-[#161b22] outline-1 outline-[#364050]">
-								<div className="bg-[#582504] w-10 h-10 flex justify-center items-center rounded-4xl">
-									<FontAwesomeIcon icon={faLeaf} className="text-[#db5d0b]" />
-								</div>
-								<p className="font-medium m-4.5">Környezetbarát</p>
-							</div>
-							<div className="flex items-center justify-center flex-col w-40 h-40 rounded-xl bg-[#161b22] outline-1 outline-[#364050]">
-								<div className="bg-[#582504] w-10 h-10 flex justify-center items-center rounded-4xl">
-									<FontAwesomeIcon icon={faPerson} className="text-[#db5d0b]" />
-								</div>
-								<p className="font-medium mt-3">
-									Szakértő<br></br> technikusok
-								</p>
-							</div>
-							<div className="flex items-center justify-center flex-col w-40 h-40 rounded-xl bg-[#161b22] outline-1 outline-[#364050]">
-								<div className="bg-[#582504] w-10 h-10 flex justify-center items-center rounded-4xl">
-									<FontAwesomeIcon
-										icon={faThumbsUp}
-										className="text-[#db5d0b]"
-									/>
-								</div>
-								<p className="font-medium mt-3">
-									Garantált<br></br> elégedettség
-								</p>
-							</div>
-							<div className="flex items-center justify-center flex-col w-40 h-40 rounded-xl bg-[#161b22] outline-1 outline-[#364050]">
-								<div className="bg-[#582504] w-10 h-10 flex justify-center items-center rounded-4xl">
-									<FontAwesomeIcon icon={faClock} className="text-[#db5d0b]" />
-								</div>
-								<p className="font-medium mt-3">
-									Rugalmas<br></br> időbeosztás
-								</p>
-							</div>
-						</div>
-					</div>
 				</div>
+				<WhyUsModule />
 
-				<hr className="text-gray-800" />
+				<hr className="text-border-muted" />
 
 				<div id="pricelist" className="pt-10">
 					<h1 className="text-4xl text-center font-bold">Áraink</h1>
 				</div>
 				<PriceList />
 
-				<hr className="text-gray-800" />
+				<hr className="text-border-muted" />
 
-				<h1 className="text-3xl font-semibold flex justify-center mb-10 mt-9">
-					Vélemények
-				</h1>
-				<div className="flex flex-wrap gap-5 justify-center">
-					<div className="bg-[#161b22] outline-1 outline-[#364050] w-85 h-40 p-3.5 rounded-md">
-						<p className="italic mb-2 font-medium">
-							A szőnyegeim soha nem néztek ki jobban! A csapat profi, barátságos
-							volt, és csodálatos munkát végzett. Nagyon ajánlom!
-						</p>
-						<p className="text-gray-400 font-semibold">- Sára J.</p>
-					</div>
-					<div className="bg-[#161b22] outline-1 outline-[#364050] w-85 h-40 p-3.5 rounded-md">
-						<p className="italic mb-2 font-medium">
-							Az autókozmetikai szolgáltatás kivételes volt. Az autóm úgy néz ki
-							és olyan illatú, mint egy új. Annyira le vagyok nyűgözve a
-							részletekre való odafigyeléstől.
-						</p>
-						<p className="text-gray-400 font-semibold">- Mike R.</p>
-					</div>
+				<div id="reviews" className="pt-10">
+					<h1 className="text-4xl text-center font-bold">Szolgáltatásaink</h1>
 				</div>
+				<ReviewsModule />
+
+				<hr className="text-border-muted" />
+
 				<footer>
-					<div className="bg-[#161b22] p-5 mt-15 text-center">
+					<div className="bg-widgetbg p-5 text-center space-y-4">
+						<h5 className="font-semibold">Időpontfoglaló sablon-weboldal:</h5>
 						<div className="flex justify-center gap-5">
-							<div className="font-medium hover:cursor-pointer">
-								Szolgáltatások
-							</div>
-							<div className="font-medium hover:cursor-pointer">Rólunk</div>
-							<div className="font-medium hover:cursor-pointer">Kapcsolat</div>
+							<a
+								className="font-semibold text-blue-400 underline"
+								href="https://github.com/Geher-Marcell"
+							>
+								Gehér Marcell
+							</a>
+							<a
+								className="font-semibold text-blue-400 underline"
+								href="https://github.com/selmeczi-attila"
+							>
+								Selmeczi Attila
+							</a>
 						</div>
 
-						<p className="mt-3 text-gray-500">
+						{/* <p className="mt-3 text-text-muted">
 							© 2025 CleanCo. Minden jog fenntartva.
-						</p>
+						</p> */}
 					</div>
 				</footer>
 			</main>
