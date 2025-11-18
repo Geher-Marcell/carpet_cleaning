@@ -239,7 +239,7 @@ const OrderPage = () => {
 							{services.map((service, index) => (
 								<div key={index}>
 									{Card(
-										service.iconName || "faSoap",
+										service.iconname || "faSoap",
 										service.name,
 										service.description || "N/A",
 										service.price || -1,

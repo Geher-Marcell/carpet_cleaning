@@ -8,27 +8,40 @@ export default function Services() {
 	const [services, setServices] = useState<Record<string, ServiceProps[]>>({});
 
 	useEffect(() => {
-		fetch("/api/services") //GET request
-			.then((res) => res.json())
-			.then((data) => {
-				const grouped = data.services.reduce(
-					//A szolgáltatások csoportosítása kategória szerint
-					(acc: Record<string, ServiceProps[]>, service: ServiceProps) => {
-						const type =
-							service.category?.charAt(0).toUpperCase() +
-							service.category?.slice(1) +
-							"tisztítás";
-						if (!type) return acc; // Skip invalid categories
+		fetch("/api/services") // GET request
+			.then((res) => {
+				if (!res.ok) {
+					throw new Error(`HTTP error! status: ${res.status}`);
+				}
+				return res.text(); // Read as text first
+			})
+			.then((text) => {
+				try {
+					const data = JSON.parse(text); // Parse JSON manually
+					const grouped = data.services.reduce(
+						//A szolgáltatások csoportosítása kategória szerint
+						(acc: Record<string, ServiceProps[]>, service: ServiceProps) => {
+							const type =
+								service.category?.charAt(0).toUpperCase() +
+								service.category?.slice(1) +
+								"tisztítás";
+							if (!type) return acc; // Skip invalid categories
 
-						if (!acc[type]) {
-							acc[type] = [];
-						}
-						acc[type].push(service);
-						return acc;
-					},
-					{}
-				);
-				setServices(grouped);
+							if (!acc[type]) {
+								acc[type] = [];
+							}
+							acc[type].push(service);
+							return acc;
+						},
+						{}
+					);
+					setServices(grouped);
+				} catch (err) {
+					console.error("Failed to parse JSON:", err);
+				}
+			})
+			.catch((err) => {
+				console.error("Fetch error:", err);
 			});
 	}, []);
 
@@ -48,7 +61,7 @@ export default function Services() {
 									content={
 										<>
 											<DynamicFAIcon
-												exportName={service.iconName || "faCircle"}
+												exportName={service.iconname || "faCircle"}
 												className="text-primary size-5 mb-4"
 											/>
 											<p className="text-xl font-bold text-text-primary">
