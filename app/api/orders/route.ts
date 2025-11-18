@@ -40,7 +40,7 @@ export async function GET(request: Request) {
 	try {
 		const selectQuery = "SELECT * FROM orders";
 		const result = await db.Read(selectQuery);
-		return NextResponse.json({ orders: result.rows }, { status: 200 });
+		return NextResponse.json({ orders: result }, { status: 200 });
 	} catch (error) {
 		console.error("Error fetching orders:", error);
 		return NextResponse.json({ message: "Database error" }, { status: 500 });

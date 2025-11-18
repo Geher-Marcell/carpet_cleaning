@@ -10,7 +10,7 @@ async function FetchServices() {
         JOIN service_types 
         ON services.category = service_types.id;`;
 	const result = await db.Read(query);
-	services = result;
+	services = result as unknown as ServiceProps[];
 	console.log("Fetched services:", services);
 }
 
