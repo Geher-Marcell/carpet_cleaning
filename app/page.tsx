@@ -6,8 +6,6 @@ import Services from "./component/pageModules/servicesModule";
 import NavbarWrapper from "./Navbar/navbarWrapper";
 import ReviewsModule from "./component/pageModules/reviewsModule";
 import WhyUsModule from "./component/pageModules/whyusModule";
-import DynamicFAIcon from "./component/utils/DynamicIcon";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Home() {
 	return (

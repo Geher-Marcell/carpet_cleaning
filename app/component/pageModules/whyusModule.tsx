@@ -19,7 +19,7 @@ export default function WhyUsModule() {
 											className="text-primary"
 										/>
 									</div>
-									<p className="font-medium m-4.5">{item.title}</p>
+									<p className="font-medium m-4.5 h-1/4">{item.title}</p>
 								</>
 							}
 						/>
