@@ -32,6 +32,12 @@ export default function PriceList() {
 					},
 					{}
 				);
+
+				// Sort services in each category by id
+				Object.keys(grouped).forEach((key) => {
+					grouped[key].sort((a: ServiceProps, b: ServiceProps) => a.id - b.id);
+				});
+
 				setServices(grouped);
 			});
 	}, []);

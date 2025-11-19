@@ -35,6 +35,14 @@ export default function Services() {
 						},
 						{}
 					);
+
+					// Sort services in each category by id
+					Object.keys(grouped).forEach((key) => {
+						grouped[key].sort(
+							(a: ServiceProps, b: ServiceProps) => a.id - b.id
+						);
+					});
+
 					setServices(grouped);
 				} catch (err) {
 					console.error("Failed to parse JSON:", err);
